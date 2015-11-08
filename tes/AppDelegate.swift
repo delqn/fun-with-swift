@@ -8,7 +8,9 @@
 
 import UIKit
 import CoreData
+
 import Parse
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("kiwtJp5whsQP59HynVBYRnOCtyvDRB4ISVzD0oAE",
             clientKey: "5s85G4sjUiWutPoX7mv4XahIbbQxViJNwJznXtP1");
         return true
+    }
+    
+    func application(application: UIApplication,
+        openURL url: NSURL,
+        sourceApplication: String?,
+        annotation: AnyObject?) -> Bool {
+            return FBSDKApplicationDelegate.sharedInstance().application(
+                application,
+                openURL: url,
+                sourceApplication: sourceApplication,
+                annotation: annotation)
     }
 
     func applicationWillResignActive(application: UIApplication) {
