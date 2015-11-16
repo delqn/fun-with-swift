@@ -15,6 +15,7 @@
 		8319E6111BEEA35B005F1696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8319E60F1BEEA35B005F1696 /* LaunchScreen.storyboard */; };
 		8319E61C1BEEA35B005F1696 /* tesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E61B1BEEA35B005F1696 /* tesTests.swift */; };
 		8319E6271BEEA35B005F1696 /* tesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E6261BEEA35B005F1696 /* tesUITests.swift */; };
+		83605AD11BF9919D002D2D46 /* SlidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605AD01BF9919D002D2D46 /* SlidersViewController.swift */; };
 		E0D50FD0B94223F3752004F0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB696C0EBA2ACAE1AF8FB78 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		8319E6221BEEA35B005F1696 /* tesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8319E6261BEEA35B005F1696 /* tesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tesUITests.swift; sourceTree = "<group>"; };
 		8319E6281BEEA35B005F1696 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83605AD01BF9919D002D2D46 /* SlidersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidersViewController.swift; sourceTree = "<group>"; };
 		BF8E1FCE864F43AA80364ED8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 				8319E60F1BEEA35B005F1696 /* LaunchScreen.storyboard */,
 				8319E6121BEEA35B005F1696 /* Info.plist */,
 				8319E60A1BEEA35B005F1696 /* tes.xcdatamodeld */,
+				83605AD01BF9919D002D2D46 /* SlidersViewController.swift */,
 			);
 			path = tes;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				8319E60C1BEEA35B005F1696 /* tes.xcdatamodeld in Sources */,
 				8319E6061BEEA35B005F1696 /* ViewController.swift in Sources */,
 				8319E6041BEEA35B005F1696 /* AppDelegate.swift in Sources */,
+				83605AD11BF9919D002D2D46 /* SlidersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
