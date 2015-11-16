@@ -47,7 +47,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 // Do work
             }
             returnUserData()
-            let viewController = SlidersViewController()
+            let viewController = SlidersViewController(playerName: "Diego Mendes")
             self.presentViewController(viewController, animated: true, completion: nil)
         }
     }

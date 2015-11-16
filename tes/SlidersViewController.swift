@@ -11,6 +11,17 @@ import UIKit
 
 class SlidersViewController: UIViewController, UINavigationBarDelegate {
 
+    var playerName: String = ""
+    
+    init(playerName: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.playerName = playerName
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func makeSlider(actionSelector: Selector, y: CGFloat) {
         let slider = UISlider(frame:CGRectMake(0, y, self.view.frame.size.width, 67))
         slider.minimumValue = 0
@@ -31,7 +42,7 @@ class SlidersViewController: UIViewController, UINavigationBarDelegate {
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
-        navigationItem.title = "TES"
+        navigationItem.title = self.playerName as String
         
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(title: "Logout?", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
