@@ -13,7 +13,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate {
+class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,10 +78,11 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     
     private func userLoggedInSucessfully(user: PFUser) {
-        let vc = ReportCardTableViewController(className: "ReportCard")
-        vc.title = "Report Card"
+        let vc = ReportCardViewController(className: "ReportCard")
         //let vc = SlidersViewController(playerName: "Diego")
-        self.presentViewController(vc, animated: true, completion: nil)
+        
+        let navController = NavController(rootViewController: vc)
+        self.presentViewController(navController, animated: true, completion: nil)
         
     }
 }

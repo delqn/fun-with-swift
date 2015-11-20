@@ -9,7 +9,7 @@
 import UIKit
 import ParseUI
 
-class ReportCardTableViewController: PFQueryTableViewController, UINavigationBarDelegate {
+class ReportCardViewController: PFQueryTableViewController, UINavigationBarDelegate {
 
     override init(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
@@ -46,39 +46,12 @@ class ReportCardTableViewController: PFQueryTableViewController, UINavigationBar
         }
         
         if let passCompletion = object?.valueForKey("PassCompletion"){
-            print("go")
             cell?.textLabel?.text = "\(indexPath.row): passCompletion: \(passCompletion)"
         }
         return cell;
     }
     
-    override func viewDidAppear(animated: Bool) {
-        makeNavbar() // this navigation bar is not good because it is pushed down when pull to refresh...
-    }
-    
     private func logoutButtonClicked () {
         NSLog("logoutButtonClicked")
-    }
-    
-    func makeNavbar() {
-        
-        // Create the navigation bar
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 44)) // Offset by 20 pixels vertically to take the status bar into account
-        navigationBar.backgroundColor = UIColor.whiteColor()
-        navigationBar.delegate = self;
-        
-        // Create a navigation item with a title
-        let navigationItem = UINavigationItem()
-        navigationItem.title = "Recent Report Cards"
-        
-        // Create two buttons for the navigation item
-        navigationItem.leftBarButtonItem = NavBarLeftButton.init(title: "blah", style: .Plain) //UIBarButtonItem(title: "Logout?", style: UIBarButtonItemStyle.Plain, target: self, action:"logoutButtonClicked")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
-        
-        // Assign the navigation item to the navigation bar
-        navigationBar.items = [navigationItem]
-        
-        // Make the navigation bar a subview of the current view controller
-        self.view.addSubview(navigationBar)
     }
 }
