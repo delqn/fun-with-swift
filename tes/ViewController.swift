@@ -48,12 +48,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             loginView.delegate = self
         }
     }
-
-    private func userLoggedInSucessfully(user: PFUser) {
-        let viewController = SlidersViewController(playerName: "Diego")
-        self.presentViewController(viewController, animated: true, completion: nil)
-        
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -80,6 +74,15 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User Logged Out")
+    }
+    
+    
+    private func userLoggedInSucessfully(user: PFUser) {
+        let vc = ReportCardTableViewController(className: "ReportCard")
+        vc.title = "Report Card"
+        //let vc = SlidersViewController(playerName: "Diego")
+        self.presentViewController(vc, animated: true, completion: nil)
+        
     }
 }
 
