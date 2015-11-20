@@ -37,18 +37,18 @@ class ReportCardTableViewController: PFQueryTableViewController, UINavigationBar
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
-        let cellIdentifier:String = "Cell"
+        let cellIdentifier = "Cell"
         
-        var cell:PFTableViewCell? = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? PFTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? PFTableViewCell
         
         if(cell == nil) {
             cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
         }
         
-        if let pfObject = object {
-            cell?.textLabel?.text = pfObject["name"] as? String
+        if let passCompletion = object?.valueForKey("PassCompletion"){
+            print("go")
+            cell?.textLabel?.text = "\(indexPath.row): passCompletion: \(passCompletion)"
         }
-        
         return cell;
     }
     
@@ -69,7 +69,7 @@ class ReportCardTableViewController: PFQueryTableViewController, UINavigationBar
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
-        navigationItem.title = "nstahoesnuthasonteuh"
+        navigationItem.title = "Recent Report Cards"
         
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = NavBarLeftButton.init(title: "blah", style: .Plain) //UIBarButtonItem(title: "Logout?", style: UIBarButtonItemStyle.Plain, target: self, action:"logoutButtonClicked")
