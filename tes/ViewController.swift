@@ -18,16 +18,19 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        let permissions = ["public_profile"]
+        // TODO(delyan): this should be trigered with a BUTTON - not automatically
+        // See if you can reuse the button from FBSDKLoginKit
+        let permissions = ["public_profile", "email"]
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
             (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
+                print (user)
                 if user.isNew {
                     print("User signed up and logged in through Facebook!")
                 } else {
                     print("User logged in through Facebook!")
                 }
+                self.userLoggedInSucessfully(user)
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")
             }
@@ -46,6 +49,12 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
 
+    private func userLoggedInSucessfully(user: PFUser) {
+        let viewController = SlidersViewController(playerName: "Diego")
+        self.presentViewController(viewController, animated: true, completion: nil)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -66,33 +75,11 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             if result.grantedPermissions.contains("name") {
                 // Do work
             }
-            returnUserData()
-            let viewController = SlidersViewController(playerName: "Diego")
-            self.presentViewController(viewController, animated: true, completion: nil)
         }
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User Logged Out")
-    }
-    
-    func returnUserData() {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
-            
-            if ((error) != nil) {
-                // Process error
-                print("Error: \(error)")
-            } else {
-                print("fetched user: \(result)")
-                if let userName : NSString = result.valueForKey("name") as? NSString {
-                    print("User Name is: \(userName)")
-                }
-                if let userEmail : NSString = result.valueForKey("email") as? NSString {
-                    print("User Email is: \(userEmail)")
-                }
-            }
-        })
     }
 }
 
