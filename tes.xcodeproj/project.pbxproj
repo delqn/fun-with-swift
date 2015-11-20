@@ -16,6 +16,11 @@
 		8319E61C1BEEA35B005F1696 /* tesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E61B1BEEA35B005F1696 /* tesTests.swift */; };
 		8319E6271BEEA35B005F1696 /* tesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E6261BEEA35B005F1696 /* tesUITests.swift */; };
 		83605AD11BF9919D002D2D46 /* SlidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605AD01BF9919D002D2D46 /* SlidersViewController.swift */; };
+		839A8B7B1BFF838200AED243 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7A1BFF838200AED243 /* ParseFacebookUtilsV4.framework */; };
+		839A8B7D1BFF83DB00AED243 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7C1BFF83DB00AED243 /* Parse.framework */; };
+		839A8B811BFF83E300AED243 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7E1BFF83E300AED243 /* FBSDKCoreKit.framework */; };
+		839A8B821BFF83E300AED243 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7F1BFF83E300AED243 /* FBSDKLoginKit.framework */; };
+		839A8B831BFF83E300AED243 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B801BFF83E300AED243 /* FBSDKShareKit.framework */; };
 		E0D50FD0B94223F3752004F0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB696C0EBA2ACAE1AF8FB78 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +59,11 @@
 		8319E6261BEEA35B005F1696 /* tesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tesUITests.swift; sourceTree = "<group>"; };
 		8319E6281BEEA35B005F1696 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83605AD01BF9919D002D2D46 /* SlidersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidersViewController.swift; sourceTree = "<group>"; };
+		839A8B7A1BFF838200AED243 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "Pods/../build/Debug-iphoneos/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
+		839A8B7C1BFF83DB00AED243 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
+		839A8B7E1BFF83E300AED243 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		839A8B7F1BFF83E300AED243 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		839A8B801BFF83E300AED243 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		BF8E1FCE864F43AA80364ED8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +72,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				839A8B811BFF83E300AED243 /* FBSDKCoreKit.framework in Frameworks */,
+				839A8B821BFF83E300AED243 /* FBSDKLoginKit.framework in Frameworks */,
+				839A8B831BFF83E300AED243 /* FBSDKShareKit.framework in Frameworks */,
+				839A8B7D1BFF83DB00AED243 /* Parse.framework in Frameworks */,
+				839A8B7B1BFF838200AED243 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				E0D50FD0B94223F3752004F0 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +101,11 @@
 		708C53316F07AC1AC41807D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				839A8B7E1BFF83E300AED243 /* FBSDKCoreKit.framework */,
+				839A8B7F1BFF83E300AED243 /* FBSDKLoginKit.framework */,
+				839A8B801BFF83E300AED243 /* FBSDKShareKit.framework */,
+				839A8B7C1BFF83DB00AED243 /* Parse.framework */,
+				839A8B7A1BFF838200AED243 /* ParseFacebookUtilsV4.framework */,
 				1AB696C0EBA2ACAE1AF8FB78 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -484,13 +504,20 @@
 			baseConfigurationReference = BF8E1FCE864F43AA80364ED8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = tes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = li.mis.tes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -499,13 +526,20 @@
 			baseConfigurationReference = 1BE11C3D0237B9BBB631C096 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = tes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = li.mis.tes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

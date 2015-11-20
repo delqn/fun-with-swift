@@ -10,7 +10,10 @@ import UIKit
 import CoreData
 
 import Parse
-import FBSDKLoginKit
+import Bolts
+import FBSDKLoginKit 
+import ParseFacebookUtilsV4
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +25,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Parse.setApplicationId("kiwtJp5whsQP59HynVBYRnOCtyvDRB4ISVzD0oAE",
             clientKey: "5s85G4sjUiWutPoX7mv4XahIbbQxViJNwJznXtP1");
-        return true
+        
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        
+        PFUser.enableAutomaticUser()
+        
+        let defaultACL = PFACL();
+        
+        // If you would like all objects to be private by default, remove this line.
+        defaultACL.setPublicReadAccess(true)
+        
+        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
+        
+        if application.applicationState != UIApplicationState.Background {
+            // Track an app open here if we launch with a push, unless
+            // "content_available" was used to trigger a background push (introduced in iOS 7).
+            // In that case, we skip tracking here to avoid double counting the app-open.
+            
+            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
+            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+            var noPushPayload = false;
+            if let options = launchOptions {
+                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
+            }
+            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
+                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+            }
+        }
+        
+        if application.respondsToSelector("registerUserNotificationSettings:") {
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            
+            
+            
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        } else {
+            let types: UIRemoteNotificationType = [UIRemoteNotificationType.Badge, UIRemoteNotificationType.Alert, UIRemoteNotificationType.Sound]
+            application.registerForRemoteNotificationTypes(types)
+        }
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func application(application: UIApplication,

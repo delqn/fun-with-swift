@@ -8,12 +8,32 @@
 
 import UIKit
 
+import Parse
 import FBSDKLoginKit
+import FBSDKCoreKit
+import ParseFacebookUtilsV4
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let permissions = ["public_profile"]
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if let user = user {
+                if user.isNew {
+                    print("User signed up and logged in through Facebook!")
+                } else {
+                    print("User logged in through Facebook!")
+                }
+            } else {
+                print("Uh oh. The user cancelled the Facebook login.")
+            }
+        }
+
+        
         // Do any additional setup after loading the view, typically from a nib.
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             // User is already logged in, do work such as go to next view controller.
@@ -47,7 +67,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 // Do work
             }
             returnUserData()
-            let viewController = SlidersViewController(playerName: "Diego Mendes")
+            let viewController = SlidersViewController(playerName: "Diego")
             self.presentViewController(viewController, animated: true, completion: nil)
         }
     }

@@ -1,75 +1,64 @@
 {
   "images" : [
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA.png",
+      "size" : "29x29",
       "scale" : "2x"
     },
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-1.png",
+      "size" : "29x29",
       "scale" : "3x"
     },
     {
-      "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-3.png",
+      "size" : "40x40",
       "scale" : "2x"
     },
     {
-      "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-2.png",
+      "size" : "40x40",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-5.png",
+      "filename" : "iphone - 120.png",
       "scale" : "2x"
     },
     {
-      "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-4.png",
+      "size" : "60x60",
       "scale" : "3x"
     },
     {
-      "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-9.png",
+      "size" : "29x29",
       "scale" : "1x"
     },
     {
-      "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-8.png",
+      "size" : "29x29",
       "scale" : "2x"
     },
     {
-      "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-7.png",
+      "size" : "40x40",
       "scale" : "1x"
     },
     {
-      "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-6.png",
+      "size" : "40x40",
       "scale" : "2x"
     },
     {
-      "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-11.png",
+      "size" : "76x76",
       "scale" : "1x"
     },
     {
-      "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "soccer-ball-clipart-no-background-4nTBxeriA-10.png",
+      "size" : "76x76",
       "scale" : "2x"
     }
   ],
