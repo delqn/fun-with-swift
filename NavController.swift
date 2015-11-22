@@ -29,11 +29,11 @@ class NavController: UINavigationController, UINavigationBarDelegate {
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
-        navigationItem.title = "Recent Report Cards"
+        navigationItem.title = "Report Cards"
         
         // Create two buttons for the navigation item
-        navigationItem.leftBarButtonItem = NavBarLeftButton.init(title: "blah", style: .Plain) //UIBarButtonItem(title: "Logout?", style: UIBarButtonItemStyle.Plain, target: self, action:"logoutButtonClicked")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
+        navigationItem.leftBarButtonItem = NavBarLeftButton.init(title: "Add", style: .Plain)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Nothing Yet", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
         
         // Assign the navigation item to the navigation bar
         nb.items = [navigationItem]

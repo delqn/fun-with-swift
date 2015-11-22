@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SlidersViewController: UIViewController, UINavigationBarDelegate {
+class RatingViewController: UIViewController, UINavigationBarDelegate {
 
     var playerName: String = ""
     

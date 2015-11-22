@@ -42,11 +42,16 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? PFTableViewCell
         
         if(cell == nil) {
-            cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
+            //cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
+            cell = ReportCardCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
+            cell!.tag = indexPath.row
         }
         
-        if let passCompletion = object?.valueForKey("PassCompletion"){
-            cell?.textLabel?.text = "\(indexPath.row): passCompletion: \(passCompletion)"
+        if let o = object {
+            let pc = o.valueForKey("PassCompletion")!
+            let te = o.valueForKey("Technical")!
+            let ta = o.valueForKey("Tactical")!
+            cell?.textLabel?.text = "\(indexPath.row): passCompletion: \(pc), tech: \(te), tact: \(ta)"
         }
         return cell;
     }
