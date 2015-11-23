@@ -18,15 +18,8 @@ class GradeViewController: UIViewController, UINavigationBarDelegate {
     }
     
     func makeSlider(actionSelector: Selector, y: CGFloat) {
-        let slider = UISlider(frame:CGRectMake(0, y, self.view.frame.size.width, 67))
-        slider.minimumValue = 0
-        slider.maximumValue = 100
-        slider.continuous = true
-        slider.tintColor = UIColor.redColor()
-        slider.value = 50
-        slider.addTarget(self, action: actionSelector, forControlEvents: .ValueChanged)
+        let slider = DiscreteSlider(frame:CGRectMake(0, y, self.view.frame.size.width, 67), actionSelector: actionSelector)
         self.view.addSubview(slider)
-        
     }
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {

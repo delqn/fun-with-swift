@@ -16,6 +16,7 @@
 		8319E61C1BEEA35B005F1696 /* tesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E61B1BEEA35B005F1696 /* tesTests.swift */; };
 		8319E6271BEEA35B005F1696 /* tesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E6261BEEA35B005F1696 /* tesUITests.swift */; };
 		83605AD11BF9919D002D2D46 /* GradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605AD01BF9919D002D2D46 /* GradeViewController.swift */; };
+		836EEF021C03D6E100B88393 /* DiscreteSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EEF011C03D6E100B88393 /* DiscreteSlider.swift */; };
 		839A8B7B1BFF838200AED243 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7A1BFF838200AED243 /* ParseFacebookUtilsV4.framework */; };
 		839A8B7D1BFF83DB00AED243 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7C1BFF83DB00AED243 /* Parse.framework */; };
 		839A8B811BFF83E300AED243 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7E1BFF83E300AED243 /* FBSDKCoreKit.framework */; };
@@ -62,6 +63,7 @@
 		8319E6261BEEA35B005F1696 /* tesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tesUITests.swift; sourceTree = "<group>"; };
 		8319E6281BEEA35B005F1696 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83605AD01BF9919D002D2D46 /* GradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeViewController.swift; sourceTree = "<group>"; };
+		836EEF011C03D6E100B88393 /* DiscreteSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscreteSlider.swift; sourceTree = "<group>"; };
 		839A8B7A1BFF838200AED243 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "Pods/../build/Debug-iphoneos/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		839A8B7C1BFF83DB00AED243 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
 		839A8B7E1BFF83E300AED243 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				8319E6121BEEA35B005F1696 /* Info.plist */,
 				8319E6071BEEA35B005F1696 /* Main.storyboard */,
 				8319E60F1BEEA35B005F1696 /* LaunchScreen.storyboard */,
+				836EEF011C03D6E100B88393 /* DiscreteSlider.swift */,
 			);
 			path = tes;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				8319E60C1BEEA35B005F1696 /* tes.xcdatamodeld in Sources */,
 				8319E6061BEEA35B005F1696 /* ViewController.swift in Sources */,
 				8319E6041BEEA35B005F1696 /* AppDelegate.swift in Sources */,
+				836EEF021C03D6E100B88393 /* DiscreteSlider.swift in Sources */,
 				83605AD11BF9919D002D2D46 /* GradeViewController.swift in Sources */,
 				839A8B851BFF8F4B00AED243 /* ReportCardViewController.swift in Sources */,
 			);

@@ -46,7 +46,7 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
             let pc = o.valueForKey("PassCompletion")!
             let te = o.valueForKey("Technical")!
             let ta = o.valueForKey("Tactical")!
-            cell?.textLabel?.text = "\(indexPath.row): passCompletion: \(pc), tech: \(te), tact: \(ta)"
+            cell?.textLabel?.text = "\(indexPath.row): pass: \(pc), tech: \(te), tact: \(ta)"
         }
         return cell;
     }
