@@ -51,7 +51,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("User Logged In")
         
-        if ((error) != nil) {
+        if (error != nil) {
             // Process error
         } else if result.isCancelled {
             // Handle cancellations

@@ -1,40 +1,25 @@
 import UIKit
 
 class NavigationController: UINavigationController {
+    var navBar: UINavigationBar?
+    var navItem: UINavigationItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let navigationItem = UINavigationItem()
-        navigationItem.title = "Report Cards"
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "barButtonItemPressed:")       
+        self.navItem = UINavigationItem(title: "Report Cards")
+        
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "barButtonItemPressed:")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Nothing Yet", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
         
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 44))
-        navigationBar.items = [navigationItem]
+        self.navBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 44))
+        self.navBar!.items = [navigationItem]
         self.view.addSubview(navigationBar)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func barButtonItemPressed(sender: UIBarButtonItem) {
-        let gameScore = PFObject(className:"ReportCard")
-        gameScore["PassCompletion"] = 5
-        gameScore["Technical"] = 6
-        gameScore["Tactical"] = 7
-        gameScore.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                NSLog("Sucessfully logged data into Parse cloud.")
-            } else {
-                // There was a problem, check error.description
-                NSLog("There was an error: @%", error!.description)
-            }
-        }
-        
     }
     
     /*

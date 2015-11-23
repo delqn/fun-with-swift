@@ -37,7 +37,7 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
             cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
             let button = UIButton(type: .ContactAdd)
             button.frame = CGRectMake(cell!.frame.width - 30, cell!.frame.origin.y + 5, 100, 30)
-            button.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: "addButtonPressed:", forControlEvents: .TouchUpInside)
             button.tag = indexPath.row
             cell!.addSubview(button)
         }
@@ -51,7 +51,7 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
         return cell;
     }
     
-    func buttonPressed(sender: UIButton) {
+    func addButtonPressed(sender: UIButton) {
         print("button pressed", sender.tag)
         let navigationController  = self.parentViewController as! UINavigationController
         let vc = GradeViewController(playerName: "Diego")

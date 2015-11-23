@@ -26,44 +26,37 @@ class GradeViewController: UIViewController, UINavigationBarDelegate {
         
     }
     
-    func makeNavbar() {
-        // Create the navigation bar
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 44)) // Offset by 20 pixels vertically to take the status bar into account
-        navigationBar.backgroundColor = UIColor.whiteColor()
-        navigationBar.delegate = self;
-        
-        // Create a navigation item with a title
-        let navigationItem = UINavigationItem()
-        navigationItem.title = self.playerName as String
-        
-        // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(title: "Logout?", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
-        let rightButton = UIBarButtonItem(title: "Save Grade", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
-        
-        // Create two buttons for the navigation item
-        navigationItem.leftBarButtonItem = leftButton
-        navigationItem.rightBarButtonItem = rightButton
-        
-        // Assign the navigation item to the navigation bar
-        navigationBar.items = [navigationItem]
-        
-        // Make the navigation bar a subview of the current view controller
-        self.view.addSubview(navigationBar)
-    }
-    
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
     
-    override func viewDidAppear(animated: Bool) {
-        makeNavbar()
+    func barButtonItemPressed(sender: UIBarButtonItem) {
+        let gameScore = PFObject(className:"ReportCard")
+        gameScore["PassCompletion"] = 5
+        gameScore["Technical"] = 6
+        gameScore["Tactical"] = 7
+        gameScore.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                NSLog("Sucessfully logged data into Parse cloud.")
+            } else {
+                // There was a problem, check error.description
+                NSLog("There was an error: @%", error!.description)
+            }
+        }
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
+    
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         // todo - use self.view.frame.size.width?
         makeSlider("sliderValueDidChange:", y: 250)
         makeSlider("sliderValueDidChange:", y: 350)
         makeSlider("sliderValueDidChange:", y: 450)
+        
+        print("GradeViewController made an appearance")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "barButtonItemPressed:")
+        self.navigationItem.title = "Add a grade"
     }
     
     func sliderValueDidChange(sender:UISlider!) {
