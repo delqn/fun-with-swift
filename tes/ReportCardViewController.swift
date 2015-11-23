@@ -1,11 +1,3 @@
-//
-//  ReportCardTableViewController.swift
-//  tes
-//
-//  Created by de on 11/20/15.
-//  Copyright © 2015 misli. All rights reserved.
-//
-
 import UIKit
 import ParseUI
 

@@ -1,11 +1,3 @@
-//
-//  SlidersViewController.swift
-//  tes
-//
-//  Created by de on 11/15/15.
-//  Copyright © 2015 misli. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

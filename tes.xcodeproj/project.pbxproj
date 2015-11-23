@@ -15,7 +15,7 @@
 		8319E6111BEEA35B005F1696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8319E60F1BEEA35B005F1696 /* LaunchScreen.storyboard */; };
 		8319E61C1BEEA35B005F1696 /* tesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E61B1BEEA35B005F1696 /* tesTests.swift */; };
 		8319E6271BEEA35B005F1696 /* tesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E6261BEEA35B005F1696 /* tesUITests.swift */; };
-		833F2EFC1BFFD13900EE088D /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833F2EFB1BFFD13900EE088D /* NavController.swift */; };
+		833F2EFC1BFFD13900EE088D /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833F2EFB1BFFD13900EE088D /* NavigationController.swift */; };
 		83605AD11BF9919D002D2D46 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605AD01BF9919D002D2D46 /* RatingViewController.swift */; };
 		839A8B7B1BFF838200AED243 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7A1BFF838200AED243 /* ParseFacebookUtilsV4.framework */; };
 		839A8B7D1BFF83DB00AED243 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7C1BFF83DB00AED243 /* Parse.framework */; };
@@ -25,7 +25,6 @@
 		839A8B851BFF8F4B00AED243 /* ReportCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A8B841BFF8F4B00AED243 /* ReportCardViewController.swift */; };
 		839A8B881BFF91B000AED243 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B871BFF91B000AED243 /* ParseUI.framework */; };
 		839A8B8A1BFF91B600AED243 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B891BFF91B600AED243 /* Bolts.framework */; };
-		839A8B8C1BFFB09D00AED243 /* NavBarLeftButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A8B8B1BFFB09D00AED243 /* NavBarLeftButton.swift */; };
 		83C86ECE1C02688B00ED7EF3 /* ReportCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C86ECD1C02688B00ED7EF3 /* ReportCardCell.swift */; };
 		E0D50FD0B94223F3752004F0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB696C0EBA2ACAE1AF8FB78 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -64,7 +63,7 @@
 		8319E6221BEEA35B005F1696 /* tesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8319E6261BEEA35B005F1696 /* tesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tesUITests.swift; sourceTree = "<group>"; };
 		8319E6281BEEA35B005F1696 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		833F2EFB1BFFD13900EE088D /* NavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavController.swift; path = ../NavController.swift; sourceTree = "<group>"; };
+		833F2EFB1BFFD13900EE088D /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = ../NavigationController.swift; sourceTree = "<group>"; };
 		83605AD01BF9919D002D2D46 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		839A8B7A1BFF838200AED243 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "Pods/../build/Debug-iphoneos/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		839A8B7C1BFF83DB00AED243 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
@@ -75,7 +74,6 @@
 		839A8B861BFF90BF00AED243 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = SOURCE_ROOT; };
 		839A8B871BFF91B000AED243 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "Pods/../build/Debug-iphoneos/ParseUI.framework"; sourceTree = "<group>"; };
 		839A8B891BFF91B600AED243 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
-		839A8B8B1BFFB09D00AED243 /* NavBarLeftButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarLeftButton.swift; sourceTree = "<group>"; };
 		83C86ECD1C02688B00ED7EF3 /* ReportCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCardCell.swift; sourceTree = "<group>"; };
 		BF8E1FCE864F43AA80364ED8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,19 +151,18 @@
 		8319E6021BEEA35B005F1696 /* tes */ = {
 			isa = PBXGroup;
 			children = (
+				8319E60D1BEEA35B005F1696 /* Assets.xcassets */,
 				839A8B861BFF90BF00AED243 /* BridgingHeader.h */,
 				8319E6031BEEA35B005F1696 /* AppDelegate.swift */,
 				8319E6051BEEA35B005F1696 /* ViewController.swift */,
-				8319E6071BEEA35B005F1696 /* Main.storyboard */,
-				8319E60D1BEEA35B005F1696 /* Assets.xcassets */,
-				8319E60F1BEEA35B005F1696 /* LaunchScreen.storyboard */,
-				8319E6121BEEA35B005F1696 /* Info.plist */,
-				8319E60A1BEEA35B005F1696 /* tes.xcdatamodeld */,
-				83605AD01BF9919D002D2D46 /* RatingViewController.swift */,
+				833F2EFB1BFFD13900EE088D /* NavigationController.swift */,
 				839A8B841BFF8F4B00AED243 /* ReportCardViewController.swift */,
-				833F2EFB1BFFD13900EE088D /* NavController.swift */,
-				839A8B8B1BFFB09D00AED243 /* NavBarLeftButton.swift */,
 				83C86ECD1C02688B00ED7EF3 /* ReportCardCell.swift */,
+				83605AD01BF9919D002D2D46 /* RatingViewController.swift */,
+				8319E60A1BEEA35B005F1696 /* tes.xcdatamodeld */,
+				8319E6121BEEA35B005F1696 /* Info.plist */,
+				8319E6071BEEA35B005F1696 /* Main.storyboard */,
+				8319E60F1BEEA35B005F1696 /* LaunchScreen.storyboard */,
 			);
 			path = tes;
 			sourceTree = "<group>";
@@ -381,9 +378,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8319E60C1BEEA35B005F1696 /* tes.xcdatamodeld in Sources */,
-				833F2EFC1BFFD13900EE088D /* NavController.swift in Sources */,
+				833F2EFC1BFFD13900EE088D /* NavigationController.swift in Sources */,
 				8319E6061BEEA35B005F1696 /* ViewController.swift in Sources */,
-				839A8B8C1BFFB09D00AED243 /* NavBarLeftButton.swift in Sources */,
 				8319E6041BEEA35B005F1696 /* AppDelegate.swift in Sources */,
 				83C86ECE1C02688B00ED7EF3 /* ReportCardCell.swift in Sources */,
 				83605AD11BF9919D002D2D46 /* RatingViewController.swift in Sources */,

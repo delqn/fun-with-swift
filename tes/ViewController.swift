@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  tes
-//
-//  Created by de on 11/7/15.
-//  Copyright © 2015 misli. All rights reserved.
-//
-
 import UIKit
 
 import Parse
@@ -78,10 +70,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
     
     
     private func userLoggedInSucessfully(user: PFUser) {
-        let vc = ReportCardViewController(className: "ReportCard")
-        //let vc = SlidersViewController(playerName: "Diego")
-        
-        let navController = NavController(rootViewController: vc)
+        let vc = ReportCardViewController(className: "ReportCard")        
+        let navController = NavigationController(rootViewController: vc)
         self.presentViewController(navController, animated: true, completion: nil)
         
     }

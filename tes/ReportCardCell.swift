@@ -1,11 +1,3 @@
-//
-//  ReportCardCell.swift
-//  tes
-//
-//  Created by de on 11/22/15.
-//  Copyright © 2015 misli. All rights reserved.
-//
-
 import UIKit
 import ParseUI
 
@@ -36,6 +28,10 @@ class ReportCardCell: PFTableViewCell {
     
     func buttonPressed() {
         print("button pressed", self.tag)
+        let navigationController  = self.window!.rootViewController as! UINavigationController
+        let vc = RatingViewController(playerName: "Diego")
+        navigationController.pushViewController(vc, animated: true)
+
     }
     
 }
