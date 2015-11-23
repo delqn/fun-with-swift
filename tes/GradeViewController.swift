@@ -4,6 +4,9 @@ import UIKit
 class GradeViewController: UIViewController, UINavigationBarDelegate {
 
     var playerName: String = ""
+    var PC: Int = 0;
+    var TE: Int = 0;
+    var TA: Int = 0;
     
     init(playerName: String) {
         super.init(nibName: nil, bundle: nil)
@@ -32,9 +35,9 @@ class GradeViewController: UIViewController, UINavigationBarDelegate {
     
     func addGradeButtonPressed(sender: UIBarButtonItem) {
         let gameScore = PFObject(className:"ReportCard")
-        gameScore["PassCompletion"] = 5
-        gameScore["Technical"] = 6
-        gameScore["Tactical"] = 7
+        gameScore["PassCompletion"] = self.PC
+        gameScore["Technical"] = self.TE
+        gameScore["Tactical"] = self.TA
         gameScore.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
@@ -54,9 +57,9 @@ class GradeViewController: UIViewController, UINavigationBarDelegate {
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         // todo - use self.view.frame.size.width?
-        makeSlider("sliderValueDidChange:", y: 250)
-        makeSlider("sliderValueDidChange:", y: 350)
-        makeSlider("sliderValueDidChange:", y: 450)
+        makeSlider("sliderPCValueDidChange:", y: 250)
+        makeSlider("sliderTEValueDidChange:", y: 350)
+        makeSlider("sliderTAValueDidChange:", y: 450)
         
         print("GradeViewController made an appearance")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "addGradeButtonPressed:")
@@ -64,7 +67,15 @@ class GradeViewController: UIViewController, UINavigationBarDelegate {
         self.navigationItem.title = "Add a grade"
     }
     
-    func sliderValueDidChange(sender:UISlider!) {
-        print("value: \(sender.value)")
+    func sliderPCValueDidChange(sender:UISlider!) {
+        self.PC = Int(sender.value)
+    }
+    
+    func sliderTEValueDidChange(sender:UISlider!) {
+        self.TE = Int(sender.value)
+    }
+    
+    func sliderTAValueDidChange(sender:UISlider!) {
+        self.TA = Int(sender.value)
     }
 }
