@@ -18,14 +18,14 @@ class DiscreteSlider: UISlider {
     }
     */
     
-    init(frame: CGRect, actionSelector: Selector) {
+    init(frame: CGRect, actionTarget: AnyObject, actionSelector: Selector) {
         super.init(frame: frame)
         minimumValue = 0
         maximumValue = 10
         continuous = true
         tintColor = UIColor.redColor()
         value = 5
-        addTarget(self, action: actionSelector, forControlEvents: .ValueChanged)
+        addTarget(actionTarget, action: actionSelector, forControlEvents: .ValueChanged)
     }
 
     required init?(coder aDecoder: NSCoder) {

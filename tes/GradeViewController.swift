@@ -18,7 +18,7 @@ class GradeViewController: UIViewController, UINavigationBarDelegate {
     }
     
     func makeSlider(actionSelector: Selector, y: CGFloat) {
-        let slider = DiscreteSlider(frame:CGRectMake(0, y, self.view.frame.size.width, 67), actionSelector: actionSelector)
+        let slider = DiscreteSlider(frame:CGRectMake(0, y, self.view.frame.size.width, 67), actionTarget: self, actionSelector: actionSelector)
         self.view.addSubview(slider)
     }
     
