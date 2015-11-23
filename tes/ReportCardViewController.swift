@@ -27,6 +27,12 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
         return query
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadObjects()
+        tableView.reloadData()
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
         let cellIdentifier = "Cell"
