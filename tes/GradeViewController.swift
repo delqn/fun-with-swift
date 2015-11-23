@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class RatingViewController: UIViewController, UINavigationBarDelegate {
+class GradeViewController: UIViewController, UINavigationBarDelegate {
 
     var playerName: String = ""
     
@@ -38,7 +38,7 @@ class RatingViewController: UIViewController, UINavigationBarDelegate {
         
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(title: "Logout?", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
-        let rightButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
+        let rightButton = UIBarButtonItem(title: "Save Grade", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
         
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
@@ -59,19 +59,14 @@ class RatingViewController: UIViewController, UINavigationBarDelegate {
         makeNavbar()
     }
     override func viewDidLoad() {
-        print("already the new view just loaded")
         self.view.backgroundColor = UIColor.whiteColor()
-        
         // todo - use self.view.frame.size.width?
         makeSlider("sliderValueDidChange:", y: 250)
         makeSlider("sliderValueDidChange:", y: 350)
         makeSlider("sliderValueDidChange:", y: 450)
-        
-        
     }
     
-    func sliderValueDidChange(sender:UISlider!)
-    {
-        print("value--\(sender.value)")
+    func sliderValueDidChange(sender:UISlider!) {
+        print("value: \(sender.value)")
     }
 }

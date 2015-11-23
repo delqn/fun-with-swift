@@ -35,13 +35,11 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
         
         if(cell == nil) {
             cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
-            let button = UIButton(type: .Custom)
-            button.setTitle("rate", forState: .Normal)
-            button.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            let button = UIButton(type: .ContactAdd)
             button.frame = CGRectMake(cell!.frame.width - 30, cell!.frame.origin.y + 5, 100, 30)
             button.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
+            button.tag = indexPath.row
             cell!.addSubview(button)
-            cell!.tag = indexPath.row
         }
         
         if let o = object {
@@ -56,7 +54,7 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
     func buttonPressed(sender: UIButton) {
         print("button pressed", sender.tag)
         let navigationController  = self.parentViewController as! UINavigationController
-        let vc = RatingViewController(playerName: "Diego")
+        let vc = GradeViewController(playerName: "Diego")
         navigationController.pushViewController(vc, animated: true)
     }
     
