@@ -9,7 +9,19 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let button = UIButton(type: .System)
+        button.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
+        button.setTitle("Login with facebook", forState: .Normal)
+        button.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
+        self.view.addSubview(button)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func fbLogin(sender: UIButton) {
         // TODO(delyan): this should be trigered with a BUTTON - not automatically
         // See if you can reuse the button from FBSDKLoginKit
         let permissions = ["public_profile", "email"]
@@ -27,7 +39,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
                 print("Uh oh. The user cancelled the Facebook login.")
             }
         }
-
+        
         
         // Do any additional setup after loading the view, typically from a nib.
         if (FBSDKAccessToken.currentAccessToken() != nil) {
@@ -41,11 +53,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // Facebook Delegate Methods
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
