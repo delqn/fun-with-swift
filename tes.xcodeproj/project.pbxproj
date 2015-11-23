@@ -25,7 +25,6 @@
 		839A8B851BFF8F4B00AED243 /* ReportCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A8B841BFF8F4B00AED243 /* ReportCardViewController.swift */; };
 		839A8B881BFF91B000AED243 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B871BFF91B000AED243 /* ParseUI.framework */; };
 		839A8B8A1BFF91B600AED243 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B891BFF91B600AED243 /* Bolts.framework */; };
-		83C86ECE1C02688B00ED7EF3 /* ReportCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C86ECD1C02688B00ED7EF3 /* ReportCardCell.swift */; };
 		E0D50FD0B94223F3752004F0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB696C0EBA2ACAE1AF8FB78 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,7 +73,6 @@
 		839A8B861BFF90BF00AED243 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = SOURCE_ROOT; };
 		839A8B871BFF91B000AED243 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "Pods/../build/Debug-iphoneos/ParseUI.framework"; sourceTree = "<group>"; };
 		839A8B891BFF91B600AED243 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
-		83C86ECD1C02688B00ED7EF3 /* ReportCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCardCell.swift; sourceTree = "<group>"; };
 		BF8E1FCE864F43AA80364ED8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,7 +155,6 @@
 				8319E6051BEEA35B005F1696 /* ViewController.swift */,
 				833F2EFB1BFFD13900EE088D /* NavigationController.swift */,
 				839A8B841BFF8F4B00AED243 /* ReportCardViewController.swift */,
-				83C86ECD1C02688B00ED7EF3 /* ReportCardCell.swift */,
 				83605AD01BF9919D002D2D46 /* RatingViewController.swift */,
 				8319E60A1BEEA35B005F1696 /* tes.xcdatamodeld */,
 				8319E6121BEEA35B005F1696 /* Info.plist */,
@@ -381,7 +378,6 @@
 				833F2EFC1BFFD13900EE088D /* NavigationController.swift in Sources */,
 				8319E6061BEEA35B005F1696 /* ViewController.swift in Sources */,
 				8319E6041BEEA35B005F1696 /* AppDelegate.swift in Sources */,
-				83C86ECE1C02688B00ED7EF3 /* ReportCardCell.swift in Sources */,
 				83605AD11BF9919D002D2D46 /* RatingViewController.swift in Sources */,
 				839A8B851BFF8F4B00AED243 /* ReportCardViewController.swift in Sources */,
 			);

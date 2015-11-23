@@ -34,8 +34,13 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? PFTableViewCell
         
         if(cell == nil) {
-            //cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
-            cell = ReportCardCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
+            cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
+            let button = UIButton(type: .Custom)
+            button.setTitle("rate", forState: .Normal)
+            button.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            button.frame = CGRectMake(cell!.frame.width - 30, cell!.frame.origin.y + 5, 100, 30)
+            button.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
+            cell!.addSubview(button)
             cell!.tag = indexPath.row
         }
         
@@ -46,6 +51,13 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
             cell?.textLabel?.text = "\(indexPath.row): passCompletion: \(pc), tech: \(te), tact: \(ta)"
         }
         return cell;
+    }
+    
+    func buttonPressed(sender: UIButton) {
+        print("button pressed", sender.tag)
+        let navigationController  = self.parentViewController as! UINavigationController
+        let vc = RatingViewController(playerName: "Diego")
+        navigationController.pushViewController(vc, animated: true)
     }
     
     private func logoutButtonClicked () {
