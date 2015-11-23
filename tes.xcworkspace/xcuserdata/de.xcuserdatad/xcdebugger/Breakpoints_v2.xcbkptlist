@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tes/ReportCardViewController.swift"
-            timestampString = "470002055.12238"
+            timestampString = "470004103.778176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "logoutButtonClicked()"
             landmarkType = "5">
          </BreakpointContent>

@@ -30,7 +30,7 @@ class GradeViewController: UIViewController, UINavigationBarDelegate {
         return UIBarPosition.TopAttached
     }
     
-    func barButtonItemPressed(sender: UIBarButtonItem) {
+    func addGradeButtonPressed(sender: UIBarButtonItem) {
         let gameScore = PFObject(className:"ReportCard")
         gameScore["PassCompletion"] = 5
         gameScore["Technical"] = 6
@@ -47,6 +47,10 @@ class GradeViewController: UIViewController, UINavigationBarDelegate {
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
+    func cancelButtonPressed(sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         // todo - use self.view.frame.size.width?
@@ -55,7 +59,8 @@ class GradeViewController: UIViewController, UINavigationBarDelegate {
         makeSlider("sliderValueDidChange:", y: 450)
         
         print("GradeViewController made an appearance")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "barButtonItemPressed:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "addGradeButtonPressed:")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancelButtonPressed:")
         self.navigationItem.title = "Add a grade"
     }
     

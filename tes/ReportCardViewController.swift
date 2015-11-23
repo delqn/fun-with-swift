@@ -51,6 +51,19 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
         return cell;
     }
     
+    private func objectDeleted() {
+        print("some object was deleted")
+        self.loadObjects()
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let pfObject = self.objects?[indexPath.row] as! PFObject
+            pfObject.deleteInBackgroundWithTarget(self, selector: "objectDeleted")
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    
     func addButtonPressed(sender: UIButton) {
         print("button pressed", sender.tag)
         let navigationController  = self.parentViewController as! UINavigationController
