@@ -78,7 +78,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
     
     private func userLoggedInSucessfully(user: PFUser) {
         let vc = ReportCardViewController(className: "ReportCard")        
-        let navController = NavigationController(rootViewController: vc)
+        let navController = UINavigationController(rootViewController: vc)
         self.presentViewController(navController, animated: true, completion: nil)
         
     }

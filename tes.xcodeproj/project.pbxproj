@@ -15,7 +15,6 @@
 		8319E6111BEEA35B005F1696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8319E60F1BEEA35B005F1696 /* LaunchScreen.storyboard */; };
 		8319E61C1BEEA35B005F1696 /* tesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E61B1BEEA35B005F1696 /* tesTests.swift */; };
 		8319E6271BEEA35B005F1696 /* tesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E6261BEEA35B005F1696 /* tesUITests.swift */; };
-		833F2EFC1BFFD13900EE088D /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833F2EFB1BFFD13900EE088D /* NavigationController.swift */; };
 		83605AD11BF9919D002D2D46 /* GradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605AD01BF9919D002D2D46 /* GradeViewController.swift */; };
 		839A8B7B1BFF838200AED243 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7A1BFF838200AED243 /* ParseFacebookUtilsV4.framework */; };
 		839A8B7D1BFF83DB00AED243 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839A8B7C1BFF83DB00AED243 /* Parse.framework */; };
@@ -62,7 +61,6 @@
 		8319E6221BEEA35B005F1696 /* tesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8319E6261BEEA35B005F1696 /* tesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tesUITests.swift; sourceTree = "<group>"; };
 		8319E6281BEEA35B005F1696 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		833F2EFB1BFFD13900EE088D /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = ../NavigationController.swift; sourceTree = "<group>"; };
 		83605AD01BF9919D002D2D46 /* GradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeViewController.swift; sourceTree = "<group>"; };
 		839A8B7A1BFF838200AED243 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "Pods/../build/Debug-iphoneos/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		839A8B7C1BFF83DB00AED243 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				839A8B861BFF90BF00AED243 /* BridgingHeader.h */,
 				8319E6031BEEA35B005F1696 /* AppDelegate.swift */,
 				8319E6051BEEA35B005F1696 /* ViewController.swift */,
-				833F2EFB1BFFD13900EE088D /* NavigationController.swift */,
 				839A8B841BFF8F4B00AED243 /* ReportCardViewController.swift */,
 				83605AD01BF9919D002D2D46 /* GradeViewController.swift */,
 				8319E60A1BEEA35B005F1696 /* tes.xcdatamodeld */,
@@ -375,7 +372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8319E60C1BEEA35B005F1696 /* tes.xcdatamodeld in Sources */,
-				833F2EFC1BFFD13900EE088D /* NavigationController.swift in Sources */,
 				8319E6061BEEA35B005F1696 /* ViewController.swift in Sources */,
 				8319E6041BEEA35B005F1696 /* AppDelegate.swift in Sources */,
 				83605AD11BF9919D002D2D46 /* GradeViewController.swift in Sources */,
