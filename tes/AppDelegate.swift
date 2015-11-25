@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultACL = PFACL();
         
         // If you would like all objects to be private by default, remove this line.
-        defaultACL.setPublicReadAccess(true)
+        /////TODO() defaultACL.setPublicReadAccess(true) --> this broke after an upgrade of pods...
         
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
         

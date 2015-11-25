@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		831261DC1C062D2F00953283 /* CoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831261DB1C062D2F00953283 /* CoachViewController.swift */; };
+		831261DE1C062E1700953283 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831261DD1C062E1700953283 /* ProfileViewController.swift */; };
 		8319E6041BEEA35B005F1696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E6031BEEA35B005F1696 /* AppDelegate.swift */; };
 		8319E6061BEEA35B005F1696 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319E6051BEEA35B005F1696 /* ViewController.swift */; };
 		8319E6091BEEA35B005F1696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8319E6071BEEA35B005F1696 /* Main.storyboard */; };
@@ -48,6 +50,8 @@
 /* Begin PBXFileReference section */
 		1AB696C0EBA2ACAE1AF8FB78 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE11C3D0237B9BBB631C096 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		831261DB1C062D2F00953283 /* CoachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachViewController.swift; sourceTree = "<group>"; };
+		831261DD1C062E1700953283 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8319E6001BEEA35B005F1696 /* tes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8319E6031BEEA35B005F1696 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8319E6051BEEA35B005F1696 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				839A8B861BFF90BF00AED243 /* BridgingHeader.h */,
 				8319E6031BEEA35B005F1696 /* AppDelegate.swift */,
 				8319E6051BEEA35B005F1696 /* ViewController.swift */,
+				831261DD1C062E1700953283 /* ProfileViewController.swift */,
+				831261DB1C062D2F00953283 /* CoachViewController.swift */,
 				839A8B841BFF8F4B00AED243 /* ReportCardViewController.swift */,
 				83605AD01BF9919D002D2D46 /* GradeViewController.swift */,
 				8319E60A1BEEA35B005F1696 /* tes.xcdatamodeld */,
@@ -374,11 +380,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831261DC1C062D2F00953283 /* CoachViewController.swift in Sources */,
 				8319E60C1BEEA35B005F1696 /* tes.xcdatamodeld in Sources */,
 				8319E6061BEEA35B005F1696 /* ViewController.swift in Sources */,
 				8319E6041BEEA35B005F1696 /* AppDelegate.swift in Sources */,
 				836EEF021C03D6E100B88393 /* DiscreteSlider.swift in Sources */,
 				83605AD11BF9919D002D2D46 /* GradeViewController.swift in Sources */,
+				831261DE1C062E1700953283 /* ProfileViewController.swift in Sources */,
 				839A8B851BFF8F4B00AED243 /* ReportCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -77,10 +77,20 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
     
     
     private func userLoggedInSucessfully(user: PFUser) {
-        let vc = ReportCardViewController(className: "ReportCard")        
-        let navController = UINavigationController(rootViewController: vc)
-        self.presentViewController(navController, animated: true, completion: nil)
+        let tabBarController = UITabBarController()
         
+        let vc = ReportCardViewController(className: "ReportCard")        
+        let gamesNavController = UINavigationController(rootViewController: vc)
+        gamesNavController.title = "Games"
+        
+        let profileViewController = ProfileViewController()
+        profileViewController.title = "Profile"
+        
+        let coachViewController = CoachViewController()
+        coachViewController.title = "Coach"
+        
+        tabBarController.viewControllers = [gamesNavController, coachViewController, profileViewController]
+        self.presentViewController(tabBarController, animated: true, completion: nil)
     }
 }
 

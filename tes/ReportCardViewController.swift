@@ -1,5 +1,6 @@
 import UIKit
 import ParseUI
+//import PromiseKit
 
 class ReportCardViewController: PFQueryTableViewController, UINavigationBarDelegate {
 
@@ -57,17 +58,15 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
         return cell;
     }
     
-    func rowDeleted() {
-        self.loadObjects()
-        tableView.reloadData()
-        // TODO
-        //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-    }
-    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let pfObject = self.objects?[indexPath.row] as! PFObject
-            pfObject.deleteInBackgroundWithTarget(self, selector: "rowDeleted")
+            
+            let backgroundDelete: PFBooleanResultBlock = {
+                (success, error) in
+                self.loadObjects()
+            }
+            pfObject.deleteInBackgroundWithBlock(backgroundDelete)
         }
     }
     

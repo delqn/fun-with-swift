@@ -4,6 +4,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <PromiseKit/PromiseKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 
