@@ -5,7 +5,13 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
-var loggedInUser: PFUser?
+struct User {
+    var pfUser: PFUser? = nil
+    var name: String? = nil
+    var email: String? = nil
+}
+
+var loggedInUser = User()
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBarDelegate {
     
@@ -23,6 +29,27 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
         // Dispose of any resources that can be recreated.
     }
 
+    func getFacebookProfile() {
+        // TODO(delyan): graphPath needs to change
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            if ((error) != nil) {
+                // Process error
+                print("Error: \(error)")
+            } else {
+                print("fetched user: \(result)")
+                if let userName : NSString = result.valueForKey("name") as? NSString {
+                    print("User Name is: \(userName)")
+                    loggedInUser.name = userName as String
+                }
+                if let userEmail : NSString = result.valueForKey("email") as? NSString {
+                    print("User Email is: \(userEmail)")
+                    loggedInUser.email = userEmail as String
+                }
+            }
+        })
+    }
+    
     func fbLogin(sender: UIButton) {
         // TODO(delyan): this should be trigered with a BUTTON - not automatically
         // See if you can reuse the button from FBSDKLoginKit
@@ -35,7 +62,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
                     print("User signed up and logged in through Facebook!")
                 } else {
                     print("User logged in through Facebook!")
-                    loggedInUser = user
+                    loggedInUser.pfUser = user
+                    self.getFacebookProfile() // sideefects
                 }
                 self.userLoggedInSucessfully(user)
             } else {
