@@ -40,8 +40,6 @@ class ProfileViewController: UIViewController {
                 }
             }
         })
-
-        label.text = "put name here"
         self.view.addSubview(label)
     }
 
