@@ -5,6 +5,8 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
+var loggedInUser: PFUser?
+
 class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBarDelegate {
     
     override func viewDidLoad() {
@@ -33,6 +35,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
                     print("User signed up and logged in through Facebook!")
                 } else {
                     print("User logged in through Facebook!")
+                    loggedInUser = user
                 }
                 self.userLoggedInSucessfully(user)
             } else {
