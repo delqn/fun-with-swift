@@ -17,7 +17,7 @@ class CoachViewController: UIViewController {
         
         let button = UIButton(type: .System)
         button.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
-        button.setTitle("blah", forState: .Normal)
+        button.setTitle("Coach's Name Here", forState: .Normal)
         self.view.addSubview(button)
         
     }

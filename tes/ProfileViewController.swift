@@ -13,12 +13,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.greenColor()
-        
-        let button = UIButton(type: .System)
-        button.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
-        button.setTitle("blah", forState: .Normal)
-        self.view.addSubview(button)
+        self.view.backgroundColor = UIColor.whiteColor()
         
         let label = UILabel()
         label.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 100, 150, 50)
@@ -32,7 +27,7 @@ class ProfileViewController: UIViewController {
                     print("Finished downloading \"\(imgUrl.URLByDeletingPathExtension!.lastPathComponent!)\".")
                     let image = UIImage(data: data)
                     let imageView = UIImageView(image: image)
-                    imageView.frame = CGRect(x: 5, y: 5, width: self.view.frame.width - 10, height: self.view.frame.width - 10)
+                    imageView.frame = CGRect(x: 5, y: 100, width: self.view.frame.width - 10, height: self.view.frame.width - 10)
                     self.view.addSubview(imageView)
                 }
             }.resume()

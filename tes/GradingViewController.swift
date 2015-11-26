@@ -17,8 +17,19 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func makeSlider(actionSelector: Selector, y: CGFloat) {
-        let slider = DiscreteSlider(frame:CGRectMake(0, y, self.view.frame.size.width, 67), actionTarget: self, actionSelector: actionSelector)
+    func makeSlider(actionSelector: Selector, y: CGFloat, label lbl: String) {
+        let padding: CGFloat = 5
+        let label = UILabel(frame: CGRectMake(padding, y, self.view.frame.size.width - padding, 67))
+        label.text = lbl
+        self.view.addSubview(label)
+        
+        let slider = UISlider(frame:CGRectMake(padding, y + 12, self.view.frame.size.width - padding, 67))
+        slider.minimumValue = 0
+        slider.maximumValue = 10
+        slider.continuous = false
+        slider.tintColor = UIColor.redColor()
+        slider.value = 5
+        slider.addTarget(self, action: actionSelector, forControlEvents: .ValueChanged)
         self.view.addSubview(slider)
     }
     
@@ -50,9 +61,9 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         // todo - use self.view.frame.size.width?
-        makeSlider("sliderPCValueDidChange:", y: 250)
-        makeSlider("sliderTEValueDidChange:", y: 350)
-        makeSlider("sliderTAValueDidChange:", y: 450)
+        makeSlider("sliderPCValueDidChange:", y: 250, label: "Passing Completion")
+        makeSlider("sliderTEValueDidChange:", y: 350, label: "Technical")
+        makeSlider("sliderTAValueDidChange:", y: 450, label: "Tactical")
         
         print("GradeViewController made an appearance")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "addGradeButtonPressed:")
