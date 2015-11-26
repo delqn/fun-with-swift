@@ -13,7 +13,7 @@ struct User {
 
 var loggedInUser = User()
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBarDelegate {
+class ViewController: UIViewController, UINavigationBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,49 +70,14 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UINavigationBa
                 print("Uh oh. The user cancelled the Facebook login.")
             }
         }
-        
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        if (FBSDKAccessToken.currentAccessToken() != nil) {
-            // User is already logged in, do work such as go to next view controller.
-        } else {
-            let loginView = FBSDKLoginButton()
-            self.view.addSubview(loginView)
-            loginView.center = self.view.center
-            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-            loginView.delegate = self
-        }
     }
-    
-    // Facebook Delegate Methods
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        print("User Logged In")
-        
-        if (error != nil) {
-            // Process error
-        } else if result.isCancelled {
-            // Handle cancellations
-        } else {
-            // If you ask for multiple permissions at once, you
-            // should check if specific permissions missing
-            if result.grantedPermissions.contains("name") {
-                // Do work
-            }
-        }
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print("User Logged Out")
-    }
-    
-    
+
     private func userLoggedInSucessfully(user: PFUser) {
         let tabBarController = UITabBarController()
         
-        let vc = ReportCardViewController(className: "ReportCard")        
+        let vc = ReportCardViewController(className: "ReportCard")
+        vc.title = "Games"
         let gamesNavController = UINavigationController(rootViewController: vc)
-        gamesNavController.title = "Games"
         
         let profileViewController = ProfileViewController()
         profileViewController.title = "Profile"
