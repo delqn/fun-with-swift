@@ -9,6 +9,7 @@ struct User {
     var pfUser: PFUser? = nil
     var name: String? = nil
     var email: String? = nil
+    var photoURL: String? = nil
 }
 
 var loggedInUser = User()
@@ -38,13 +39,16 @@ class ViewController: UIViewController, UINavigationBarDelegate {
                 print("Error: \(error)")
             } else {
                 print("fetched user: \(result)")
-                if let userName : NSString = result.valueForKey("name") as? NSString {
+                if let userName: NSString = result.valueForKey("name") as? NSString {
                     print("User Name is: \(userName)")
                     loggedInUser.name = userName as String
                 }
-                if let userEmail : NSString = result.valueForKey("email") as? NSString {
+                if let userEmail: NSString = result.valueForKey("email") as? NSString {
                     print("User Email is: \(userEmail)")
                     loggedInUser.email = userEmail as String
+                }
+                if let userID: NSString = result.valueForKey("id") as? NSString {
+                    loggedInUser.photoURL = "https://graph.facebook.com/\(userID)/picture?type=large"
                 }
             }
         })

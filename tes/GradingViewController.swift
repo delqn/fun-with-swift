@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class GradeViewController: UIViewController, UINavigationBarDelegate {
+class GradingViewController: UIViewController, UINavigationBarDelegate {
 
     var playerName: String = ""
     var PC: Int = 0;

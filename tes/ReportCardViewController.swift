@@ -73,7 +73,7 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
     func addButtonPressed(sender: UIButton) {
         print("button pressed", sender.tag)
         let navigationController  = self.parentViewController as! UINavigationController
-        let vc = GradeViewController(playerName: "Diego")
+        let vc = GradingViewController(playerName: "Diego")
         navigationController.pushViewController(vc, animated: true)
     }
     

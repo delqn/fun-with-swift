@@ -217,13 +217,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "tes/ProfileViewController.swift"
-            timestampString = "470187783.354653"
+            filePath = "tes/ViewController.swift"
+            timestampString = "470189060.649573"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getFacebookProfile()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tes/ViewController.swift"
+            timestampString = "470189162.535473"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "getFacebookProfile()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
