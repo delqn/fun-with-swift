@@ -16,13 +16,14 @@ var loggedInUser = User()
 
 class ViewController: UIViewController, UINavigationBarDelegate {
     
+    let loginButton = UIButton(type: .System)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let button = UIButton(type: .System)
-        button.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
-        button.setTitle("Login with facebook", forState: .Normal)
-        button.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(button)
+        self.loginButton.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
+        self.loginButton.setTitle("Login with facebook", forState: .Normal)
+        self.loginButton.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
+        self.view.addSubview(self.loginButton)
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,13 +56,13 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     }
     
     func fbLogin(sender: UIButton) {
+        self.loginButton.hidden = true
         // TODO(delyan): this should be trigered with a BUTTON - not automatically
         // See if you can reuse the button from FBSDKLoginKit
         let permissions = ["public_profile", "email"]
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
             (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
-                print (user)
                 if user.isNew {
                     print("User signed up and logged in through Facebook!")
                 } else {
@@ -72,6 +73,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
                 self.userLoggedInSucessfully(user)
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")
+                self.loginButton.hidden = false
             }
         }
     }

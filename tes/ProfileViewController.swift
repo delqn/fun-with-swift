@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
                     print("Finished downloading \"\(imgUrl.URLByDeletingPathExtension!.lastPathComponent!)\".")
                     let image = UIImage(data: data)
                     let imageView = UIImageView(image: image)
-                    imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
+                    imageView.frame = CGRect(x: 5, y: 5, width: self.view.frame.width - 10, height: self.view.frame.width - 10)
                     self.view.addSubview(imageView)
                 }
             }.resume()

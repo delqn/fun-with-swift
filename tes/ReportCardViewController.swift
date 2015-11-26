@@ -44,7 +44,7 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
             cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
             let button = UIButton(type: .ContactAdd)
             button.frame = CGRectMake(cell!.frame.width - 30, cell!.frame.origin.y + 5, 100, 30)
-            button.addTarget(self, action: "addButtonPressed:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: "addGradeButtonPressed:", forControlEvents: .TouchUpInside)
             button.tag = indexPath.row
             cell!.addSubview(button)
         }
@@ -61,23 +61,16 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let pfObject = self.objects?[indexPath.row] as! PFObject
-            
-            let backgroundDelete: PFBooleanResultBlock = {
-                (success, error) in
+            let backgroundDelete: PFBooleanResultBlock = { (success, error) in
                 self.loadObjects()
             }
             pfObject.deleteInBackgroundWithBlock(backgroundDelete)
         }
     }
     
-    func addButtonPressed(sender: UIButton) {
-        print("button pressed", sender.tag)
+    func addGradeButtonPressed(sender: UIButton) {
         let navigationController  = self.parentViewController as! UINavigationController
-        let vc = GradingViewController(playerName: "Diego")
+        let vc = GradingViewController(playerName: loggedInUser.name!)
         navigationController.pushViewController(vc, animated: true)
-    }
-    
-    private func logoutButtonClicked () {
-        NSLog("logoutButtonClicked")
     }
 }
