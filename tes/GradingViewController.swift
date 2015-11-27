@@ -4,9 +4,9 @@ import UIKit
 class GradingViewController: UIViewController, UINavigationBarDelegate {
 
     var playerName: String = ""
-    var PC: Int = 0;
-    var TE: Int = 0;
-    var TA: Int = 0;
+    var PC = UISlider()
+    var TE = UISlider()
+    var TA = UISlider()
     
     init(playerName: String) {
         super.init(nibName: nil, bundle: nil)
@@ -17,19 +17,21 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func makeSlider(actionSelector: Selector, y: CGFloat, label lbl: String) {
+    func makeSlider(slider: UISlider, y: CGFloat, label lbl: String, tag: Int) {
         let padding: CGFloat = 5
         let label = UILabel(frame: CGRectMake(padding, y, self.view.frame.size.width - padding, 67))
         label.text = lbl
+        label.tag = tag
         self.view.addSubview(label)
         
-        let slider = UISlider(frame:CGRectMake(padding, y + 12, self.view.frame.size.width - padding, 67))
+        slider.frame = CGRectMake(padding, y + 15, self.view.frame.size.width - padding, 67)
         slider.minimumValue = 0
         slider.maximumValue = 10
         slider.continuous = false
         slider.tintColor = UIColor.redColor()
         slider.value = 5
-        slider.addTarget(self, action: actionSelector, forControlEvents: .ValueChanged)
+        slider.tag = tag
+        slider.addTarget(self, action: "sliderChange:", forControlEvents: .ValueChanged)
         self.view.addSubview(slider)
     }
     
@@ -39,9 +41,9 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
     
     func addGradeButtonPressed(sender: UIBarButtonItem) {
         let gameScore = PFObject(className:"ReportCard")
-        gameScore["PassCompletion"] = self.PC
-        gameScore["Technical"] = self.TE
-        gameScore["Tactical"] = self.TA
+        gameScore["PassCompletion"] = self.PC.value
+        gameScore["Technical"] = self.TE.value
+        gameScore["Tactical"] = self.TA.value
         gameScore.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
@@ -61,9 +63,9 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         // todo - use self.view.frame.size.width?
-        makeSlider("sliderPCValueDidChange:", y: 250, label: "Passing Completion")
-        makeSlider("sliderTEValueDidChange:", y: 350, label: "Technical")
-        makeSlider("sliderTAValueDidChange:", y: 450, label: "Tactical")
+        makeSlider(self.PC, y: 250, label: "Passing Completion", tag: 1)
+        makeSlider(self.TE, y: 350, label: "Technical", tag: 2)
+        makeSlider(self.TA, y: 450, label: "Tactical", tag: 3)
         
         print("GradeViewController made an appearance")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "addGradeButtonPressed:")
@@ -71,15 +73,13 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
         self.navigationItem.title = "Add a grade"
     }
     
-    func sliderPCValueDidChange(sender:UISlider!) {
-        self.PC = Int(sender.value)
-    }
-    
-    func sliderTEValueDidChange(sender:UISlider!) {
-        self.TE = Int(sender.value)
-    }
-    
-    func sliderTAValueDidChange(sender:UISlider!) {
-        self.TA = Int(sender.value)
+    func sliderChange(sender: UISlider!) {
+        for view in self.view.subviews {
+            if view is UILabel && view.tag == sender.tag {
+                let v = view as! UILabel
+                let txt = v.text!.characters.split { $0 == ":" }
+                // you get it
+            }
+        }
     }
 }

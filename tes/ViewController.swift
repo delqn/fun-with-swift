@@ -81,17 +81,18 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     private func userLoggedInSucessfully(user: PFUser) {
         let tabBarController = UITabBarController()
         
-        let vc = ReportCardViewController(className: "ReportCard")
-        vc.title = "Games"
-        let gamesNavController = UINavigationController(rootViewController: vc)
+        let reportCardViewController = ReportCardViewController(className: "ReportCard")
+        reportCardViewController.title = "Games"
+        let gamesNavController = UINavigationController(rootViewController: reportCardViewController)
         
         let profileViewController = ProfileViewController()
         profileViewController.title = "Profile"
         
-        let coachViewController = CoachViewController()
-        coachViewController.title = "Coach"
+        let coachesViewController = CoachesViewController(className: "Coaches")
+        coachesViewController.title = "Coaches"
+        let coachesNavController = UINavigationController(rootViewController: coachesViewController)
         
-        tabBarController.viewControllers = [gamesNavController, coachViewController, profileViewController]
+        tabBarController.viewControllers = [gamesNavController, coachesNavController, profileViewController]
         self.presentViewController(tabBarController, animated: true, completion: nil)
     }
 }
