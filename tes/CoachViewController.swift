@@ -10,6 +10,10 @@ import UIKit
 
 class CoachViewController: UIViewController {
 
+    convenience init(coachName: String) {
+        self.init()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
