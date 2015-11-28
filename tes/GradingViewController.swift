@@ -7,6 +7,7 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
     var PC = UISlider()
     var TE = UISlider()
     var TA = UISlider()
+    var tagToLabel = [Int:UILabel]()
     
     init(playerName: String) {
         super.init(nibName: nil, bundle: nil)
@@ -17,19 +18,25 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func makeSlider(slider: UISlider, y: CGFloat, label lbl: String, tag: Int) {
+    func makeSlider(slider: UISlider, y: CGFloat, label lbl: String, tag: Int, startValue: Int, color: UIColor) {
         let padding: CGFloat = 5
-        let label = UILabel(frame: CGRectMake(padding, y, self.view.frame.size.width - padding, 67))
-        label.text = lbl
-        label.tag = tag
-        self.view.addSubview(label)
+        let frameBWidth: CGFloat = 50
         
-        slider.frame = CGRectMake(padding, y + 15, self.view.frame.size.width - padding, 67)
+        let labelA = UILabel(frame: CGRectMake(padding, y, self.view.frame.size.width - padding - frameBWidth, 67))
+        labelA.text = lbl
+        self.view.addSubview(labelA)
+
+        let labelB = UILabel(frame: CGRectMake(self.view.frame.size.width - frameBWidth - padding, y, self.view.frame.size.width - padding, 67))
+        labelB.text = String(startValue)
+        self.tagToLabel[tag] = labelB
+        self.view.addSubview(labelB)
+        
+        slider.frame = CGRectMake(padding*2, y + 15, self.view.frame.size.width - padding*2, 67)
         slider.minimumValue = 0
         slider.maximumValue = 10
-        slider.continuous = false
-        slider.tintColor = UIColor.redColor()
-        slider.value = 5
+        slider.continuous = true
+        slider.tintColor = color
+        slider.value = Float(startValue)
         slider.tag = tag
         slider.addTarget(self, action: "sliderChange:", forControlEvents: .ValueChanged)
         self.view.addSubview(slider)
@@ -41,9 +48,9 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
     
     func addGradeButtonPressed(sender: UIBarButtonItem) {
         let gameScore = PFObject(className:"ReportCard")
-        gameScore["PassCompletion"] = self.PC.value
-        gameScore["Technical"] = self.TE.value
-        gameScore["Tactical"] = self.TA.value
+        gameScore["PassCompletion"] = round(self.PC.value)
+        gameScore["Technical"] = round(self.TE.value)
+        gameScore["Tactical"] = round(self.TA.value)
         gameScore.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
@@ -63,9 +70,9 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.whiteColor()
         // todo - use self.view.frame.size.width?
-        makeSlider(self.PC, y: 250, label: "Passing Completion", tag: 1)
-        makeSlider(self.TE, y: 350, label: "Technical", tag: 2)
-        makeSlider(self.TA, y: 450, label: "Tactical", tag: 3)
+        makeSlider(self.PC, y: 250, label: "Passing Completion", tag: 1, startValue: 5, color: UIColor.redColor())
+        makeSlider(self.TE, y: 350, label: "Technical", tag: 2, startValue: 5, color: UIColor.greenColor())
+        makeSlider(self.TA, y: 450, label: "Tactical", tag: 3, startValue: 5, color: UIColor.yellowColor())
         
         print("GradeViewController made an appearance")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "addGradeButtonPressed:")
@@ -74,12 +81,9 @@ class GradingViewController: UIViewController, UINavigationBarDelegate {
     }
     
     func sliderChange(sender: UISlider!) {
-        for view in self.view.subviews {
-            if view is UILabel && view.tag == sender.tag {
-                let v = view as! UILabel
-                let txt = v.text!.characters.split { $0 == ":" }
-                // you get it
-            }
+        let newValue = Int(sender.value)
+        if let label = self.tagToLabel[sender.tag] {
+            label.text = "\(newValue)"
         }
     }
 }
