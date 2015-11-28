@@ -4,17 +4,27 @@ class CoachViewController: UIViewController {
 
     var button = UIButton(type: .System)
     
-    func getCoach(objectId: String) {
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+    // this is kept for query / threading case-scenarios
+    func getCoach(objectId: String) -> CoachViewController {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
             let query = PFQuery(className: "Coaches").whereKey("objectId", equalTo: objectId)
             do {
+                //query.cachePolicy = PFCachePolicy.CacheThenNetwork
                 let coach = try query.findObjects().first! as PFObject
+
                 if let name = coach.valueForKey("name") {
                     self.button.setTitle(name as! String, forState: .Normal)
                 }
             } catch {
                 print("Could not find the object")
             }
+        }
+        return self
+    }
+    
+    func setCoach(coach: PFObject) {
+        if let name = coach.valueForKey("name") {
+            self.button.setTitle(name as! String, forState: .Normal)
         }
     }
     
