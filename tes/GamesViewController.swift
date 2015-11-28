@@ -2,19 +2,23 @@ import UIKit
 import ParseUI
 //import PromiseKit
 
-class ReportCardViewController: PFQueryTableViewController, UINavigationBarDelegate {
+class GamesViewController: PFQueryTableViewController, UINavigationBarDelegate {
 
     var deleteIndexPath: NSIndexPath? = nil
     var grades = [Int:PFObject]();
     
-    override init(style: UITableViewStyle, className: String!) {
-        super.init(style: style, className: className)
-        
+    convenience init() {
+        let className = "ReportCard"
+        self.init(className: className)
         self.pullToRefreshEnabled = true
         self.paginationEnabled = false
         self.objectsPerPage = 25
-        
         self.parseClassName = className
+    }
+
+    override init(style: UITableViewStyle, className: String!) {
+        super.init(style: style, className: className)
+        
     }
     
     required init(coder aDecoder:NSCoder) {

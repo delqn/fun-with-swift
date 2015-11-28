@@ -90,7 +90,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     private func userLoggedInSucessfully(user: PFUser) {
         let tabBarController = UITabBarController()
         
-        let reportCardViewController = ReportCardViewController(className: "ReportCard")
+        let reportCardViewController = GamesViewController.init()
         reportCardViewController.title = "Games"
         let gamesNavController = UINavigationController(rootViewController: reportCardViewController)
         
