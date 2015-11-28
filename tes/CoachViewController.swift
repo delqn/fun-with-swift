@@ -1,28 +1,32 @@
-//
-//  CoachViewController.swift
-//  tes
-//
-//  Created by de on 11/25/15.
-//  Copyright © 2015 misli. All rights reserved.
-//
-
 import UIKit
 
 class CoachViewController: UIViewController {
 
-    convenience init(coachName: String) {
+    var button = UIButton(type: .System)
+    
+    func getCoach(objectId: String) {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let query = PFQuery(className: "Coaches").whereKey("objectId", equalTo: objectId)
+            do {
+                let coach = try query.findObjects().first! as PFObject
+                if let name = coach.valueForKey("name") {
+                    self.button.setTitle(name as! String, forState: .Normal)
+                }
+            } catch {
+                print("Could not find the object")
+            }
+        }
+    }
+    
+    convenience init(objectId: String) {
         self.init()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor.yellowColor()
-        
-        let button = UIButton(type: .System)
-        button.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
-        button.setTitle("Coach's Name Here", forState: .Normal)
-        self.view.addSubview(button)
+        self.view.backgroundColor = UIColor.whiteColor()
+        self.button.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
+        self.view.addSubview(self.button)
         
     }
 

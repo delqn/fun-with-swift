@@ -4,6 +4,9 @@ import ParseUI
 
 class CoachesViewController: PFQueryTableViewController {
     
+    let coachViewController = CoachViewController()
+    var rowNumToUserID = [Int:String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,20 +48,22 @@ class CoachesViewController: PFQueryTableViewController {
         if let o = object {
             let name = o.valueForKey("name")!
             cell?.textLabel?.text = "coach: \(name)"
+            rowNumToUserID[indexPath.row] = o.valueForKey("objectId") as! String
         }
         return cell;
     }
 
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        print("didDeselectRowAtIndexPath")
-        let coachViewController = CoachViewController()
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("didSelectRowAtIndexPath")
+        self.coachViewController.getCoach(self.rowNumToUserID[indexPath.row]!)
         self.navigationController?.pushViewController(coachViewController, animated: true)
     }
-    
+ 
+    /*
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         print("accessoryButtonTappedForRowWithIndexPath")
         let coachViewController = CoachViewController()
         self.navigationController?.pushViewController(coachViewController, animated: true)
     }
-    
+    */
 }
