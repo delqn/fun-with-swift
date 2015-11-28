@@ -4,6 +4,9 @@ import ParseUI
 
 class ReportCardViewController: PFQueryTableViewController, UINavigationBarDelegate {
 
+    var deleteIndexPath: NSIndexPath? = nil
+    var grades = [Int:PFObject]();
+    
     override init(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
         
@@ -54,18 +57,54 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
             let te = o.valueForKey("Technical")!
             let ta = o.valueForKey("Tactical")!
             cell?.textLabel?.text = "\(indexPath.row): pass: \(pc), tech: \(te), tact: \(ta)"
+            self.grades[indexPath.row] = o
         }
         return cell;
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
-            let pfObject = self.objects?[indexPath.row] as! PFObject
-            let backgroundDelete: PFBooleanResultBlock = { (success, error) in
-                self.loadObjects()
-            }
-            pfObject.deleteInBackgroundWithBlock(backgroundDelete)
+        if editingStyle == .Delete {
+            deleteIndexPath = indexPath
+            confirmDelete(indexPath.row)
         }
+    }
+    
+    func confirmDelete(row: Int) {
+        let alert = UIAlertController(title: "Delete rating", message: "Are you sure you want to permanently delete it?", preferredStyle: .ActionSheet)
+        
+        let DeleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: handleDelete)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelDelete)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        // Support display in iPad
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func handleDelete(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteIndexPath {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
+                self.tableView.beginUpdates()
+                do {
+                    try self.grades[indexPath.row]!.delete()
+                } catch {}
+                self.grades.removeValueForKey(indexPath.row)
+                self.tableView.cellForRowAtIndexPath(indexPath)?.hidden = true
+                self.loadObjects()
+                // Note that indexPath is wrapped in an array:  [indexPath]
+                //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                self.tableView.endUpdates()
+            }
+            deleteIndexPath = nil
+        }
+    }
+    
+    func cancelDelete(alertAction: UIAlertAction!) {
+        deleteIndexPath = nil
     }
     
     func addGradeButtonPressed(sender: UIButton) {
