@@ -6,10 +6,11 @@ import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
 struct User {
-    var pfUser: PFUser? = nil
-    var name: String? = nil
-    var email: String? = nil
-    var photoURL: String? = nil
+    var pfUser: PFUser?
+    var name: String?
+    var email: String?
+    var photoURL: String?
+    var photo: UIImage?
 }
 
 var loggedInUser = User()
@@ -50,6 +51,14 @@ class ViewController: UIViewController, UINavigationBarDelegate {
                 }
                 if let userID: NSString = result.valueForKey("id") as? NSString {
                     loggedInUser.photoURL = "https://graph.facebook.com/\(userID)/picture?type=large"
+                    let imgUrl = NSURL(string: "https://graph.facebook.com/\(userID)/picture?type=large")!
+                    NSURLSession.sharedSession().dataTaskWithURL(imgUrl) { (data, response, error) in
+                        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                            guard let data = data where error == nil else { return }
+                            print("Finished downloading \"\(imgUrl.URLByDeletingPathExtension!.lastPathComponent!)\".")
+                            loggedInUser.photo = UIImage(data: data)
+                        }
+                    }.resume()
                 }
             }
         })

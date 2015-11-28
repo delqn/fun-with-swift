@@ -48,7 +48,7 @@ class ReportCardViewController: PFQueryTableViewController, UINavigationBarDeleg
             button.tag = indexPath.row
             cell!.addSubview(button)
         }
-        
+
         if let o = object {
             let pc = o.valueForKey("PassCompletion")!
             let te = o.valueForKey("Technical")!

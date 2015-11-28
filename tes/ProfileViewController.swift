@@ -1,11 +1,3 @@
-//
-//  ProfileViewController.swift
-//  tes
-//
-//  Created by de on 11/25/15.
-//  Copyright © 2015 misli. All rights reserved.
-//
-
 import UIKit
 
 class ProfileViewController: UIViewController {
@@ -19,19 +11,9 @@ class ProfileViewController: UIViewController {
         label.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 100, 150, 50)
         label.text = loggedInUser.name
         self.view.addSubview(label)
-        
-        if let url = loggedInUser.photoURL, imgUrl = NSURL(string: url) {
-            NSURLSession.sharedSession().dataTaskWithURL(imgUrl) { (data, response, error) in
-                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    guard let data = data where error == nil else { return }
-                    print("Finished downloading \"\(imgUrl.URLByDeletingPathExtension!.lastPathComponent!)\".")
-                    let image = UIImage(data: data)
-                    let imageView = UIImageView(image: image)
-                    imageView.frame = CGRect(x: 5, y: 100, width: self.view.frame.width - 10, height: self.view.frame.width - 10)
-                    self.view.addSubview(imageView)
-                }
-            }.resume()
-        }
+        let imageView = UIImageView(image: loggedInUser.photo)
+        imageView.frame = CGRect(x: 5, y: 100, width: self.view.frame.width - 10, height: self.view.frame.width - 10)
+        self.view.addSubview(imageView)
     }
     
     override func didReceiveMemoryWarning() {
