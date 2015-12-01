@@ -1,4 +1,5 @@
 import UIKit
+import CloudKit
 
 import Parse
 import FBSDKLoginKit
@@ -17,19 +18,79 @@ var loggedInUser = User()
 
 class ViewController: UIViewController, UINavigationBarDelegate {
     
-    let loginButton = UIButton(type: .System)
+    let loginButtonFB = UIButton(type: .System)
+    let loginButtonIC = UIButton(type: .System)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginButton.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
-        self.loginButton.setTitle("Login with facebook", forState: .Normal)
-        self.loginButton.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(self.loginButton)
+        
+        self.loginButtonFB.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
+        self.loginButtonFB.setTitle("Login with facebook", forState: .Normal)
+        self.loginButtonFB.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
+
+        self.view.addSubview(self.loginButtonFB)
+        
+        self.loginButtonIC.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 200, 150, 50)
+        self.loginButtonIC.setTitle("Login with iCloud", forState: .Normal)
+        self.loginButtonIC.addTarget(self, action: "iCloudLogin:", forControlEvents: .TouchUpInside)
+        
+        self.view.addSubview(self.loginButtonIC)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func iCloudLogin(sender: UIButton) {
+        self.loginButtonIC.hidden = true
+        iCloudUserIDAsync() {
+            recordID, error in
+            if let userID = recordID?.recordName {
+                print("received iCloudID \(userID)")
+                self.userLoggedInSucessfully(nil, iCloudUserID: userID)
+            } else {
+                print("Fetched iCloudID was nil")
+            }
+        }
+    }
+    
+    /// async gets iCloud record ID object of logged-in iCloud user
+    func iCloudUserIDAsync(complete: (instance: CKRecordID?, error: NSError?) -> ()) {
+        let container = CKContainer.defaultContainer()
+        container.fetchUserRecordIDWithCompletionHandler() {
+            recordID, error in
+            if error != nil {
+                print(error!.localizedDescription)
+                complete(instance: nil, error: error)
+            } else {
+                print("fetched ID \(recordID?.recordName)")
+                complete(instance: recordID, error: nil)
+            }
+        }
+    }
+    
+    func fbLogin(sender: UIButton) {
+        self.loginButtonFB.hidden = true
+        // TODO(delyan): this should be trigered with a BUTTON - not automatically
+        // See if you can reuse the button from FBSDKLoginKit
+        let permissions = ["public_profile", "email"]
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if let user = user {
+                if user.isNew {
+                    print("User signed up and logged in through Facebook!")
+                } else {
+                    print("User logged in through Facebook!")
+                    loggedInUser.pfUser = user
+                    self.getFacebookProfile() // sideefects
+                }
+                self.userLoggedInSucessfully(user, iCloudUserID: nil)
+            } else {
+                print("Uh oh. The user cancelled the Facebook login.")
+                self.loginButtonFB.hidden = false
+            }
+        }
     }
 
     func getFacebookProfile() {
@@ -58,36 +119,13 @@ class ViewController: UIViewController, UINavigationBarDelegate {
                             print("Finished downloading \"\(imgUrl.URLByDeletingPathExtension!.lastPathComponent!)\".")
                             loggedInUser.photo = UIImage(data: data)
                         }
-                    }.resume()
+                        }.resume()
                 }
             }
         })
     }
     
-    func fbLogin(sender: UIButton) {
-        self.loginButton.hidden = true
-        // TODO(delyan): this should be trigered with a BUTTON - not automatically
-        // See if you can reuse the button from FBSDKLoginKit
-        let permissions = ["public_profile", "email"]
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
-            (user: PFUser?, error: NSError?) -> Void in
-            if let user = user {
-                if user.isNew {
-                    print("User signed up and logged in through Facebook!")
-                } else {
-                    print("User logged in through Facebook!")
-                    loggedInUser.pfUser = user
-                    self.getFacebookProfile() // sideefects
-                }
-                self.userLoggedInSucessfully(user)
-            } else {
-                print("Uh oh. The user cancelled the Facebook login.")
-                self.loginButton.hidden = false
-            }
-        }
-    }
-
-    private func userLoggedInSucessfully(user: PFUser) {
+    private func userLoggedInSucessfully(pfUser: PFUser?, iCloudUserID: String?) {
         let tabBarController = UITabBarController()
         
         let reportCardViewController = GamesViewController.init()
@@ -100,8 +138,13 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         let coachesViewController = CoachesViewController(className: "Coaches")
         coachesViewController.title = "Coaches"
         let coachesNavController = UINavigationController(rootViewController: coachesViewController)
-        
-        tabBarController.viewControllers = [gamesNavController, coachesNavController, profileViewController]
+
+        let teamsViewController = TeamsViewController.init(className: "Teams")
+        teamsViewController.title = "Teams"
+        let teamsNavController = UINavigationController(rootViewController: teamsViewController)
+        teamsNavController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "addTeamsButtonPressed:")
+
+        tabBarController.viewControllers = [gamesNavController, coachesNavController, profileViewController, teamsNavController]
         self.presentViewController(tabBarController, animated: true, completion: nil)
     }
 }

@@ -1,30 +1,50 @@
 import UIKit
 import ParseUI
-//import PromiseKit
 
-class GamesViewController: PFQueryTableViewController, UINavigationBarDelegate {
-
+class TeamsViewController: PFQueryTableViewController {
+    
     var deleteIndexPath: NSIndexPath? = nil
-    var grades = [Int:PFObject]();
+    var teams = [Int:PFObject]();
     
     convenience init() {
-        let className = "ReportCard"
-        self.init(className: className)
+        let className = "Teams"
+        self.init(style: .Plain, className: className)
         self.pullToRefreshEnabled = true
         self.paginationEnabled = false
         self.objectsPerPage = 25
         self.parseClassName = className
     }
-
-    override init(style: UITableViewStyle, className: String!) {
+    
+    override init(style: UITableViewStyle, className: String?) {
         super.init(style: style, className: className)
-        
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    required init(coder aDecoder:NSCoder) {
-        fatalError("NSCoding not supported")  
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
- 
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className:self.parseClassName!)
         
@@ -47,21 +67,14 @@ class GamesViewController: PFQueryTableViewController, UINavigationBarDelegate {
         
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? PFTableViewCell
         
-        if(cell == nil) {
+        if cell == nil {
             cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
-            let button = UIButton(type: .ContactAdd)
-            button.frame = CGRectMake(cell!.frame.width - 30, cell!.frame.origin.y + 5, 100, 30)
-            button.addTarget(self, action: "addGradeButtonPressed:", forControlEvents: .TouchUpInside)
-            button.tag = indexPath.row
-            cell!.addSubview(button)
         }
-
+        
         if let o = object {
-            let pc = o.valueForKey("PassCompletion")!
-            let te = o.valueForKey("Technical")!
-            let ta = o.valueForKey("Tactical")!
-            cell?.textLabel?.text = "\(indexPath.row): pass: \(pc), tech: \(te), tact: \(ta)"
-            self.grades[indexPath.row] = o
+            let teamName = o.valueForKey("teamName")!
+            cell?.textLabel?.text = "\(indexPath.row): name: \(teamName)"
+            self.teams[indexPath.row] = o
         }
         return cell;
     }
@@ -74,7 +87,7 @@ class GamesViewController: PFQueryTableViewController, UINavigationBarDelegate {
     }
     
     func confirmDelete(row: Int) {
-        let alert = UIAlertController(title: "Delete rating", message: "Are you sure you want to permanently delete it?", preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: "Delete team", message: "Are you sure you want to permanently delete it?", preferredStyle: .ActionSheet)
         
         let DeleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: handleDelete)
         let CancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelDelete)
@@ -93,13 +106,12 @@ class GamesViewController: PFQueryTableViewController, UINavigationBarDelegate {
         if let indexPath = deleteIndexPath {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
                 do {
-                    try self.grades[indexPath.row]!.delete()
+                    try self.teams[indexPath.row]!.delete()
                 } catch {}
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.grades.removeValueForKey(indexPath.row)
+                    self.teams.removeValueForKey(indexPath.row)
                     self.loadObjects()
                 }
-                
             }
         }
         deleteIndexPath = nil
@@ -109,7 +121,7 @@ class GamesViewController: PFQueryTableViewController, UINavigationBarDelegate {
         deleteIndexPath = nil
     }
     
-    func addGradeButtonPressed(sender: UIButton) {
+    func addTeamsButtonPressed(sender: UIButton) {
         let navigationController  = self.parentViewController as! UINavigationController
         let vc = GradingViewController(playerName: loggedInUser.name!)
         navigationController.pushViewController(vc, animated: true)
