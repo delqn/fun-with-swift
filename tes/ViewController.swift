@@ -51,6 +51,9 @@ class ViewController: UIViewController, UINavigationBarDelegate {
                 self.userLoggedInSucessfully(nil, iCloudUserID: userID)
             } else {
                 print("Fetched iCloudID was nil")
+                let alert = UIAlertController(title: "Alert", message: "Fetched iCloudID was nil", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
@@ -87,7 +90,11 @@ class ViewController: UIViewController, UINavigationBarDelegate {
                 }
                 self.userLoggedInSucessfully(user, iCloudUserID: nil)
             } else {
-                print("Uh oh. The user cancelled the Facebook login.")
+                print("Uh oh. The user canceled the Facebook login.")
+                print("Fetched iCloudID was nil")
+                let alert = UIAlertController(title: "Alert", message: "Facebook login was canceled.", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
                 self.loginButtonFB.hidden = false
             }
         }
