@@ -30,7 +30,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         //let dictionary = Locksmith.loadDataForUserAccount("myUserAccount")
         let dictionary = Locksmith.loadDataForUserAccount("tes")
         
-        if let iCloudID = dictionary!["iCloudID"] as? String {
+        if let iCloudID = dictionary?["iCloudID"] as? String {
             self.userLoggedInSucessfully(nil, iCloudUserID: iCloudID)
         } else if authenticateWithTouchID() {
             print("performing touchID login")

@@ -111,7 +111,8 @@ class GamesViewController: PFQueryTableViewController, UINavigationBarDelegate {
     
     func addGradeButtonPressed(sender: UIButton) {
         let navigationController  = self.parentViewController as! UINavigationController
-        let vc = GradingViewController(playerName: loggedInUser.name!)
+        let name = loggedInUser.name ?? "Player"
+        let vc = GradingViewController(playerName: name)
         navigationController.pushViewController(vc, animated: true)
     }
 }
