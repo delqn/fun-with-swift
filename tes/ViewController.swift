@@ -1,10 +1,12 @@
 import CloudKit
 import LocalAuthentication
+import Security
 import UIKit
 
-import Parse
 import FBSDKLoginKit
 import FBSDKCoreKit
+import Locksmith
+import Parse
 import ParseFacebookUtilsV4
 
 struct User {
@@ -24,22 +26,27 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        //let dictionary = Locksmith.loadDataForUserAccount("myUserAccount")
+        let dictionary = Locksmith.loadDataForUserAccount("tes")
         
-        self.loginButtonFB.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
-        self.loginButtonFB.setTitle("Login with facebook", forState: .Normal)
-        self.loginButtonFB.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
+        if let iCloudID = dictionary!["iCloudID"] as? String {
+            self.userLoggedInSucessfully(nil, iCloudUserID: iCloudID)
+        } else if authenticateWithTouchID() {
+            print("performing touchID login")
+        } else {
+            self.loginButtonFB.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
+            self.loginButtonFB.setTitle("Login with facebook", forState: .Normal)
+            self.loginButtonFB.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
 
-        self.view.addSubview(self.loginButtonFB)
+            self.view.addSubview(self.loginButtonFB)
         
-        self.loginButtonIC.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 200, 150, 50)
-        self.loginButtonIC.setTitle("Login with iCloud", forState: .Normal)
-        self.loginButtonIC.addTarget(self, action: "iCloudLogin:", forControlEvents: .TouchUpInside)
+            self.loginButtonIC.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 200, 150, 50)
+            self.loginButtonIC.setTitle("Login with iCloud", forState: .Normal)
+            self.loginButtonIC.addTarget(self, action: "iCloudLogin", forControlEvents: .TouchUpInside)
         
-        self.view.addSubview(self.loginButtonIC)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        authenticateUser()
+            self.view.addSubview(self.loginButtonIC)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,13 +54,13 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func showPasswordAlert(message: String) {
+    func showAlert(message: String) {
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func authenticateUser() {
+    func authenticateWithTouchID() -> Bool {
         print("authenticateUser")
         let context : LAContext = LAContext()
         var error : NSError?
@@ -71,17 +78,21 @@ class ViewController: UIViewController, UINavigationBarDelegate {
                 message = "TouchID not available"
             }
             print(message)
-            self.showPasswordAlert(message)
+            self.showAlert(message)
+            return false
         }
         context.evaluatePolicy(
             LAPolicy.DeviceOwnerAuthenticationWithBiometrics,
             localizedReason: myLocalizedReasonString,
-            reply: {
-                (success : Bool, evaluationError : NSError?) -> Void in
+            reply: {(success : Bool, evaluationError : NSError?) -> Void in
                 if success {
+                    self.iCloudLogin()
+                    /*
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                        self.userLoggedInSucessfully(nil, iCloudUserID: nil)
+                        //self.userLoggedInSucessfully(nil, iCloudUserID: nil)
+                        self.iCloudLogin()
                     })
+                    */
                 } else {
                     // Authentification failed
                     print(evaluationError?.localizedDescription)
@@ -95,26 +106,29 @@ class ViewController: UIViewController, UINavigationBarDelegate {
                         message = "User wants to use a password"
                         // We show the alert view in the main thread (always update the UI in the main thread)
                         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                            self.showPasswordAlert(message)
+                            self.showAlert(message)
                         })
                     default:
                         message = "Authentication failed"
                         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                            self.showPasswordAlert(message)
+                            self.showAlert(message)
                         })
                     }
                     print(message)
                 }
         })
-
+        return true
     }
     
-    func iCloudLogin(sender: UIButton) {
+    func iCloudLogin() {
         self.loginButtonIC.hidden = true
         iCloudUserIDAsync() {
             recordID, error in
             if let userID = recordID?.recordName {
                 print("received iCloudID \(userID)")
+                do {
+                    try Locksmith.saveData(["iCloudID": userID], forUserAccount: "tes")
+                } catch {}
                 self.userLoggedInSucessfully(nil, iCloudUserID: userID)
             } else {
                 print("Fetched iCloudID was nil")
