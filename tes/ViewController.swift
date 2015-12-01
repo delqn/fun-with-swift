@@ -1,5 +1,6 @@
-import UIKit
 import CloudKit
+import LocalAuthentication
+import UIKit
 
 import Parse
 import FBSDKLoginKit
@@ -37,9 +38,75 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         self.view.addSubview(self.loginButtonIC)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        authenticateUser()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showPasswordAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func authenticateUser() {
+        print("authenticateUser")
+        let context : LAContext = LAContext()
+        var error : NSError?
+        let myLocalizedReasonString = "Authentication is required"
+        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
+            print("the device does support touchID")
+        } else {
+            var message = ""
+            switch error!.code {
+            case LAError.TouchIDNotEnrolled.rawValue:
+                message = "TouchID not enrolled"
+            case LAError.PasscodeNotSet.rawValue:
+                message = "Passcode not set"
+            default:
+                message = "TouchID not available"
+            }
+            print(message)
+            self.showPasswordAlert(message)
+        }
+        context.evaluatePolicy(
+            LAPolicy.DeviceOwnerAuthenticationWithBiometrics,
+            localizedReason: myLocalizedReasonString,
+            reply: {
+                (success : Bool, evaluationError : NSError?) -> Void in
+                if success {
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        self.userLoggedInSucessfully(nil, iCloudUserID: nil)
+                    })
+                } else {
+                    // Authentification failed
+                    print(evaluationError?.localizedDescription)
+                    var message = ""
+                    switch evaluationError!.code {
+                    case LAError.SystemCancel.rawValue:
+                        message = "Authentication cancelled by the system"
+                    case LAError.UserCancel.rawValue:
+                        message = "Authentication cancelled by the user"
+                    case LAError.UserFallback.rawValue:
+                        message = "User wants to use a password"
+                        // We show the alert view in the main thread (always update the UI in the main thread)
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            self.showPasswordAlert(message)
+                        })
+                    default:
+                        message = "Authentication failed"
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            self.showPasswordAlert(message)
+                        })
+                    }
+                    print(message)
+                }
+        })
+
     }
     
     func iCloudLogin(sender: UIButton) {
