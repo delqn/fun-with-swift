@@ -28,13 +28,15 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         super.viewDidLoad()
      
         //let dictionary = Locksmith.loadDataForUserAccount("myUserAccount")
-        let dictionary = Locksmith.loadDataForUserAccount("tes")
-        
+        //let dictionary = Locksmith.loadDataForUserAccount("tes")
+
+        /*
         if let iCloudID = dictionary?["iCloudID"] as? String {
             self.userLoggedInSucessfully(nil, iCloudUserID: iCloudID)
         } else if authenticateWithTouchID() {
             print("performing touchID login")
         } else {
+*/
             self.loginButtonFB.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
             self.loginButtonFB.setTitle("Login with facebook", forState: .Normal)
             self.loginButtonFB.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
@@ -46,7 +48,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
             self.loginButtonIC.addTarget(self, action: "iCloudLogin", forControlEvents: .TouchUpInside)
         
             self.view.addSubview(self.loginButtonIC)
-        }
+//        }
     }
     
     override func didReceiveMemoryWarning() {
