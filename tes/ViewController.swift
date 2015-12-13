@@ -26,7 +26,9 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "tes.png")!)
+
         //let dictionary = Locksmith.loadDataForUserAccount("myUserAccount")
         //let dictionary = Locksmith.loadDataForUserAccount("tes")
 
@@ -36,19 +38,32 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         } else if authenticateWithTouchID() {
             print("performing touchID login")
         } else {
-*/
+        */
+
+
+
+        if true {
             self.loginButtonFB.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
+            self.loginButtonFB.layer.cornerRadius = 5
+            self.loginButtonFB.clipsToBounds = true
+            self.loginButtonFB.backgroundColor = UIColorFromRGB(0x2CCCE4)
+            self.loginButtonFB.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             self.loginButtonFB.setTitle("Login with facebook", forState: .Normal)
             self.loginButtonFB.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
 
             self.view.addSubview(self.loginButtonFB)
-        
+
+            self.loginButtonIC.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
+            self.loginButtonIC.layer.cornerRadius = 5
+            self.loginButtonIC.clipsToBounds = true
+            self.loginButtonIC.backgroundColor = UIColorFromRGB(0x2CCCE4)
+            self.loginButtonIC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             self.loginButtonIC.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 200, 150, 50)
             self.loginButtonIC.setTitle("Login with iCloud", forState: .Normal)
             self.loginButtonIC.addTarget(self, action: "iCloudLogin", forControlEvents: .TouchUpInside)
         
             self.view.addSubview(self.loginButtonIC)
-//        }
+        }
     }
     
     override func didReceiveMemoryWarning() {
