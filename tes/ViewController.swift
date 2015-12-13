@@ -41,25 +41,38 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         */
 
 
+        for family: String in UIFont.familyNames()
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNamesForFamilyName(family)
+            {
+                print("== \(names)")
+            }
+        }
 
         if true {
-            self.loginButtonFB.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
+            self.loginButtonFB.frame = CGRectMake(
+                75, self.view.frame.height - 300,
+                self.view.frame.width - 150, 50)
             self.loginButtonFB.layer.cornerRadius = 5
             self.loginButtonFB.clipsToBounds = true
             self.loginButtonFB.backgroundColor = UIColorFromRGB(0x2CCCE4)
             self.loginButtonFB.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             self.loginButtonFB.setTitle("Login with facebook", forState: .Normal)
+            self.loginButtonFB.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
             self.loginButtonFB.addTarget(self, action: "fbLogin:", forControlEvents: .TouchUpInside)
 
             self.view.addSubview(self.loginButtonFB)
 
-            self.loginButtonIC.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 300, 150, 50)
+            self.loginButtonIC.frame = CGRectMake(
+                75, self.view.frame.height - 200,
+                self.view.frame.width - 150, 50)
             self.loginButtonIC.layer.cornerRadius = 5
             self.loginButtonIC.clipsToBounds = true
             self.loginButtonIC.backgroundColor = UIColorFromRGB(0x2CCCE4)
             self.loginButtonIC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            self.loginButtonIC.frame = CGRectMake(self.view.frame.width / 2 - 75, self.view.frame.height - 200, 150, 50)
             self.loginButtonIC.setTitle("Login with iCloud", forState: .Normal)
+            self.loginButtonIC.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
             self.loginButtonIC.addTarget(self, action: "iCloudLogin", forControlEvents: .TouchUpInside)
         
             self.view.addSubview(self.loginButtonIC)
