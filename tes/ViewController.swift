@@ -23,10 +23,13 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     
     let loginButtonFB = UIButton(type: .System)
     let loginButtonIC = UIButton(type: .System)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UIApplication.sharedApplication().statusBarHidden = true
+        self.navigationController?.navigationBarHidden = true
+        /*
         let randNum = Int(arc4random_uniform(2)+1)
         switch randNum {
         case 1:
@@ -34,9 +37,11 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         case 2:
             self.view.backgroundColor = UIColor(patternImage: UIImage(named: "tes2.png")!)
         default:
-            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "tes.png")!)
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "tes0.png")!)
 
         }
+        */
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "tes0.png")!)
 
         let label = UILabel()
         label.frame = CGRectMake(
@@ -300,17 +305,19 @@ class ViewController: UIViewController, UINavigationBarDelegate {
 
     private func userLoggedInSucessfully(pfUser: PFUser?, iCloudUserID: String?) {
         let meViewController = GamesViewController.init()
-        meViewController.title = "Mex"
+        meViewController.title = "Me"
         let meNavController = UINavigationController(rootViewController: meViewController)
 
-        let teamViewController = CoachesViewController(className: "Games")
+        let teamViewController = CoachesViewController(className: "Coaches")
+        teamViewController.navigationController?.navigationBarHidden = false
         teamViewController.title = "Team"
+        let temNavController = UINavigationController(rootViewController: teamViewController)
 
         let tabBarController = UITabBarController()
         tabBarController.view.backgroundColor = UIColorFromRGB(0x2CCCE4)
         tabBarController.view.tintColor = UIColorFromRGB(0x2CCCE4)
         tabBarController.tabBar.tintColor = UIColorFromRGB(0x2CCCE4)
-        tabBarController.viewControllers = [meNavController, teamViewController]
+        tabBarController.viewControllers = [meNavController, temNavController]
         self.presentViewController(tabBarController, animated: true, completion: nil)
     }
 }

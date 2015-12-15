@@ -40,7 +40,11 @@ class GamesViewController: PFQueryTableViewController, UINavigationBarDelegate {
         self.loadObjects()
         tableView.reloadData()
     }
-    
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100;
+    }
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
         let cellIdentifier = "Cell"
@@ -50,19 +54,79 @@ class GamesViewController: PFQueryTableViewController, UINavigationBarDelegate {
         if(cell == nil) {
             cell = PFTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
             let button = UIButton(type: .ContactAdd)
-            button.frame = CGRectMake(cell!.frame.width - 30, cell!.frame.origin.y + 5, 100, 30)
+            button.frame = CGRectMake(cell!.frame.width - 30, cell!.frame.origin.y + 45, 100, 30)
             button.addTarget(self, action: "addGradeButtonPressed:", forControlEvents: .TouchUpInside)
             button.tag = indexPath.row
             cell!.addSubview(button)
         }
 
+        let ybuffer: CGFloat = 10;
         if let o = object {
             let pc = o.valueForKey("PassCompletion")!
             let te = o.valueForKey("Technical")!
             let ta = o.valueForKey("Tactical")!
-            cell?.textLabel?.text = "\(indexPath.row): pass: \(pc), tech: \(te), tact: \(ta)"
-            self.grades[indexPath.row] = o
+            //cell?.textLabel?.text = "\(indexPath.row): pass: \(pc), tech: \(te), tact: \(ta)"
+            //self.grades[indexPath.row] = o
+
+            let label = UILabel()
+            label.frame = CGRectMake(15, -10 + ybuffer, 100, 50)
+            label.textAlignment = .Center
+            label.text = "Game \(indexPath.row + 1)"
+            label.font = UIFont(name: "AvenirNext-DemiBold", size: 14)
+            label.textColor = UIColor.blackColor()
+            label.textAlignment = .Left
+            cell?.contentView.addSubview(label)
+
+            let labelC = UILabel()
+            labelC.frame = CGRectMake(275, -10 + ybuffer, 100, 50)
+            labelC.textAlignment = .Center
+            labelC.text = "View details"
+            labelC.font = UIFont(name: "AvenirNext-DemiBold", size: 14)
+            labelC.textColor = UIColor.lightGrayColor()
+            labelC.textAlignment = .Left
+            cell?.contentView.addSubview(labelC)
+
+            if let myScore: Float = ta as! Float, let coachScore: Float = te as!Float {
+                let progress = UIProgressView()
+                progress.frame = CGRectMake(120, 40 + ybuffer, cell!.frame.width-180, 30)
+                progress.progress = myScore / 10
+                // progress.center = CGPointMake(cell!.frame.width / 2, 21)
+                progress.transform = CGAffineTransformMakeScale(1.0, 5.0)
+                progress.layer.cornerRadius = 10
+                progress.layer.masksToBounds = true
+                progress.clipsToBounds = true
+                cell?.contentView.addSubview(progress)
+
+                let labelA = UILabel()
+                labelA.frame = CGRectMake(15, 15 + ybuffer, 100, 50)
+                labelA.textAlignment = .Center
+                labelA.text = "My rating"
+                labelA.font = UIFont(name: "AvenirNext-DemiBold", size: 14)
+                labelA.textColor = UIColor.grayColor()
+                labelA.textAlignment = .Left
+                cell?.contentView.addSubview(labelA)
+
+                let progressB = UIProgressView()
+                progressB.frame = CGRectMake(120, 65 + ybuffer, cell!.frame.width-180, 30)
+                progressB.progress = coachScore / 10
+                // progress.center = CGPointMake(cell!.frame.width / 2, 21)
+                progressB.transform = CGAffineTransformMakeScale(1.0, 5.0)
+                progressB.layer.cornerRadius = 10
+                progressB.layer.masksToBounds = true
+                progressB.clipsToBounds = true
+                cell?.contentView.addSubview(progressB)
+
+                let labelB = UILabel()
+                labelB.frame = CGRectMake(15, 40 + ybuffer, 100, 50)
+                labelB.textAlignment = .Center
+                labelB.text = "Coach rating"
+                labelB.font = UIFont(name: "AvenirNext-DemiBold", size: 14)
+                labelB.textColor = UIColor.grayColor()
+                labelB.textAlignment = .Left
+                cell?.contentView.addSubview(labelB)
+            }
         }
+
         return cell;
     }
     
