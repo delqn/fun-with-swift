@@ -27,7 +27,37 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "tes.png")!)
+        let randNum = Int(arc4random_uniform(2)+1)
+        switch randNum {
+        case 1:
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "tes1.png")!)
+        case 2:
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "tes2.png")!)
+        default:
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "tes.png")!)
+
+        }
+
+        let label = UILabel()
+        label.frame = CGRectMake(
+            0, 150,
+            self.view.frame.width, 50)
+        label.textAlignment = .Center
+        label.text = "TES COACHING"
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 24)
+        label.textColor = UIColor.whiteColor()
+        self.view.addSubview(label)
+
+        let labelA = UILabel()
+        labelA.frame = CGRectMake(
+            0, 200,
+            self.view.frame.width, 50)
+        labelA.textAlignment = .Center
+        labelA.text = "The power of information"
+        labelA.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+        labelA.textColor = UIColor.whiteColor()
+        self.view.addSubview(labelA)
+
 
         //let dictionary = Locksmith.loadDataForUserAccount("myUserAccount")
         //let dictionary = Locksmith.loadDataForUserAccount("tes")
@@ -52,7 +82,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
 
         if true {
             self.loginButtonFB.frame = CGRectMake(
-                75, self.view.frame.height - 300,
+                75, self.view.frame.height - 200,
                 self.view.frame.width - 150, 50)
             self.loginButtonFB.layer.cornerRadius = 5
             self.loginButtonFB.clipsToBounds = true
@@ -65,7 +95,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
             self.view.addSubview(self.loginButtonFB)
 
             self.loginButtonIC.frame = CGRectMake(
-                75, self.view.frame.height - 200,
+                75, self.view.frame.height - 100,
                 self.view.frame.width - 150, 50)
             self.loginButtonIC.layer.cornerRadius = 5
             self.loginButtonIC.clipsToBounds = true
@@ -151,6 +181,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     }
     
     func iCloudLogin() {
+        self.loginButtonFB.hidden = true
         self.loginButtonIC.hidden = true
         iCloudUserIDAsync() {
             recordID, error in
@@ -186,6 +217,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
     
     func fbLogin(sender: UIButton) {
         self.loginButtonFB.hidden = true
+        self.loginButtonIC.hidden = true
         // TODO(delyan): this should be trigered with a BUTTON - not automatically
         // See if you can reuse the button from FBSDKLoginKit
         let permissions = ["public_profile", "email"]
@@ -243,7 +275,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         })
     }
     
-    private func userLoggedInSucessfully(pfUser: PFUser?, iCloudUserID: String?) {
+    private func XXuserLoggedInSucessfully(pfUser: PFUser?, iCloudUserID: String?) {
         let tabBarController = UITabBarController()
         
         let reportCardViewController = GamesViewController.init()
@@ -263,6 +295,22 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         teamsNavController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: "addTeamsButtonPressed:")
 
         tabBarController.viewControllers = [gamesNavController, coachesNavController, profileViewController, teamsNavController]
+        self.presentViewController(tabBarController, animated: true, completion: nil)
+    }
+
+    private func userLoggedInSucessfully(pfUser: PFUser?, iCloudUserID: String?) {
+        let meViewController = GamesViewController.init()
+        meViewController.title = "Mex"
+        let meNavController = UINavigationController(rootViewController: meViewController)
+
+        let teamViewController = CoachesViewController(className: "Games")
+        teamViewController.title = "Team"
+
+        let tabBarController = UITabBarController()
+        tabBarController.view.backgroundColor = UIColorFromRGB(0x2CCCE4)
+        tabBarController.view.tintColor = UIColorFromRGB(0x2CCCE4)
+        tabBarController.tabBar.tintColor = UIColorFromRGB(0x2CCCE4)
+        tabBarController.viewControllers = [meNavController, teamViewController]
         self.presentViewController(tabBarController, animated: true, completion: nil)
     }
 }

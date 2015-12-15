@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tes/ViewController.swift"
-            timestampString = "471660637.846453"
+            timestampString = "471849410.181833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "iCloudLogin()"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tes/ViewController.swift"
-            timestampString = "471660637.846453"
+            timestampString = "471849040.658376"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "authenticateWithTouchID()"
             landmarkType = "5">
          </BreakpointContent>
